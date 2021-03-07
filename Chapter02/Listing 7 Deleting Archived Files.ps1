@@ -17,7 +17,7 @@ Function Remove-ArchivedFiles {
     Add-Type -AssemblyName $AssemblyName | Out-Null    #A
     
     
-    $OpenZip = [IO.Compression.ZipFile]::OpenRead($ZipFile)
+    $OpenZip = [System.IO.Compression.ZipFile]::OpenRead($ZipFile)
     $ZipFileEntries = $OpenZip.Entries    #B
 
     foreach($file in $FilesToDelete){

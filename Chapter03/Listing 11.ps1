@@ -1,0 +1,54 @@
+# Listing 11 - Invoke Action Script with Limiter and Date Log
+param(
+    $Source = 'P:\Scripts\CH03\Watcher\Source',
+    $Destination = 'P:\Scripts\CH03\Watcher\Destination',
+    $ActionScript = 'P:\Scripts\CH03\Watcher\Move-WatcherFile.ps1',
+    $ConcurrentJobs = 10,
+    $WatcherLog = 'P:\Scripts\CH03\Watcher\Logs\Watch-Folder.log'
+    # Add a path to a log file to use for this watcher
+)
+
+# if the watch log exists extract the date from it and convert to datetime
+if(Test-Path $WatcherLog){
+    $logDate = Get-Content $WatcherLog -Raw
+    try{
+        $LastCreationTime = Get-Date $logDate -ErrorAction Stop
+    }
+    catch{
+        $LastCreationTime = Get-Date 1970-01-01
+    }
+}
+else{
+    $LastCreationTime = Get-Date 1970-01-01
+}
+
+# filter results to only return items after last date
+$files = Get-ChildItem -Path $Source | 
+    Where-Object{$_.CreationTimeUtc -gt $LastCreationTime}
+
+$sorted = $files | Sort-Object -Property CreationTime
+
+[int[]]$Pids = @()
+foreach($file in $sorted){
+    # write the create time of the file to the log to prevent it from being picked up again
+    Get-Date $file.CreationTimeUtc -Format o | 
+        Out-File $WatcherLog
+    $Arguments =  "-file ""$ActionScript""",
+        "-FilePath ""$($file.FullName)""",
+        "-Destination ""$($Destination)"""
+    $jobParams = @{
+        FilePath = 'pwsh'
+        ArgumentList = $Arguments
+        NoNewWindow = $true 
+    }
+
+    $job = Start-Process @jobParams -PassThru
+    $Pids += $job.Id
+    
+    while($Pids.Count -ge $ConcurrentJobs){
+        $Pids = @(Get-Process -Id $Pids -ErrorAction SilentlyContinue |
+            Select-Object -ExpandProperty Id)
+        Start-Sleep -Seconds 1
+        Write-Host "Pausing PID count : $($Pids.Count)"
+    }
+}

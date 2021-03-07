@@ -1,4 +1,4 @@
-# Listing 11 Import Module Functions
+# Listing 11 Load Module Functions
 $Path = Join-Path $PSScriptRoot 'Public'
 $Public = Get-ChildItem -Path $Path -Filter '*.ps1'    #A
 

@@ -62,7 +62,7 @@ Function Remove-ArchivedFiles {
     Add-Type -AssemblyName 'System.IO.Compression.FileSystem' | Out-Null
     
     # Get the information on the files inside the zip
-    $ZipFileEntries = [IO.Compression.ZipFile]::OpenRead($ZipFiles).Entries
+    $ZipFileEntries = [IO.Compression.ZipFile]::OpenRead($ZipFile).Entries
 
     # Confirm each file to delete has a match in the zip file
     foreach($file in $FilesToDelete){
@@ -90,4 +90,4 @@ $ZipFile = Set-ArchiveFilePath -ZipPath $ZipPath -ZipPrefix $ZipPrefix -Date $Da
 $files | Compress-Archive -DestinationPath $ZipFile
 
 # Delete the old files
-Remove-ArchivedFiles -ZipFile $ZipFile -FilesToDelete $files
+Remove-ArchivedFiles -ZipFile $ZipFile -FilesToDelete $files -WhatIf
