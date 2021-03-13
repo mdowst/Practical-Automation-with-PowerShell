@@ -1,0 +1,33 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"terminal.integrated.shell.windows": "c:\\Program Files\\PowerShell\\7\\pwsh.exe",
+		"files.defaultLanguage": "powershell",
+		"shellLauncher.shells.windows": [
+			{
+				"shell": "C:\\Windows\\System32\\cmd.exe",
+				"label": "cmd"
+			},
+			{
+				"shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+				"label": "PowerShell"
+			},
+			{
+				"shell": "c:\\Program Files\\PowerShell\\7\\pwsh.exe",
+				"label": "PowerShell Core"
+			},
+			{
+				"shell": "C:\\Program Files\\Git\\bin\\bash.exe",
+				"label": "Git bash"
+			},
+			{
+				"shell": "C:\\Windows\\System32\\bash.exe",
+				"label": "WSL Bash"
+			}
+		]
+	}
+}

@@ -1,5 +1,5 @@
 # Listing 3 - Importing a Scheduled Task
-$FilePath = "P:\Scripts\CH03\Monitor\Export\DiskSpaceMonitor.xml"
+$FilePath = ".\CH03\Monitor\Export\DiskSpaceMonitor.xml"
 # Import the contents of the XML file to a string
 $xml = Get-Content $FilePath -Raw
 # Convert the XML string to an XML object

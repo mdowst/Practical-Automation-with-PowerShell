@@ -1,5 +1,5 @@
 # Listing 1 - Disk Space Monitor
-$CsvPath = 'P:\Scripts\CH03\Monitor\DiskSpaceMonitor.csv'
+$CsvPath = '.\CH03\Monitor\DiskSpaceMonitor.csv'
 
 # Gather Disk Information and Save it to variable
 $DiskSpace = Get-PSDrive -PSProvider FileSystem |

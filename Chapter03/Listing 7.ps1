@@ -1,7 +1,7 @@
 # Listing 7 - File Watcher Move Item Advanced
 param(
-    $Source = 'P:\Scripts\CH03\Watcher\Source',
-    $Destination = 'P:\Scripts\CH03\Watcher\Destination'
+    $Source = '.\CH03\Watcher\Source',
+    $Destination = '.\CH03\Watcher\Destination'
 )
 
 # Add new function to perform file checks if duplicate is found

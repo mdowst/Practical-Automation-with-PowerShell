@@ -1,11 +1,11 @@
 # Listing 11 - Invoke Action Script with Limiter and Date Log
 param(
-    $Source = 'P:\Scripts\CH03\Watcher\Source',
-    $Destination = 'P:\Scripts\CH03\Watcher\Destination',
-    $ActionScript = 'P:\Scripts\CH03\Watcher\Move-WatcherFile.ps1',
+    $Source = '.\CH03\Watcher\Source',
+    $Destination = '.\CH03\Watcher\Destination',
+    $ActionScript = '.\CH03\Watcher\Move-WatcherFile.ps1',
     $ConcurrentJobs = 10,
-    $WatcherLog = 'P:\Scripts\CH03\Watcher\Logs\Watch-Folder.log'
-    # Add a path to a log file to use for this watcher
+    $WatcherLog = '.\CH03\Watcher\Logs\Watch-Folder.log'
+    # Set a path to a log file to use for this watcher
 )
 
 # if the watch log exists extract the date from it and convert to datetime

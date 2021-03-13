@@ -1,10 +1,10 @@
 # Listing 6 - File Watcher With Rename
 param(
-    $Source = 'P:\Scripts\CH03\Watcher\Source',
-    $Destination = 'P:\Scripts\CH03\Watcher\Destination'
+    $Source = '.\CH03\Watcher\Source',
+    $Destination = '.\CH03\Watcher\Destination'
 )
 
-# Get all the sort files
+# Get all the source files
 $files = Get-ChildItem -Path $Source
 
 # Sort the files based on created time ensuring files are processed in the order they are received

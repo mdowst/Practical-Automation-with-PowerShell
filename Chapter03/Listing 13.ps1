@@ -1,10 +1,10 @@
 # Listing 13 - Graceful Terminations
 param(
-    $Source = 'P:\Scripts\CH03\Watcher\Source',
-    $Destination = 'P:\Scripts\CH03\Watcher\Destination',
-    $ActionScript = 'P:\Scripts\CH03\Watcher\Move-WatcherFile.ps1',
+    $Source = '.\CH03\Watcher\Source',
+    $Destination = '.\CH03\Watcher\Destination',
+    $ActionScript = '.\CH03\Watcher\Move-WatcherFile.ps1',
     $ConcurrentJobs = 10,
-    $WatcherLog = 'P:\Scripts\CH03\Watcher\Logs\Watch-Folder.log',
+    $WatcherLog = '.\CH03\Watcher\Logs\Watch-Folder.log',
     # Set your execution time limit
     $TimeLimit = 30
 )
@@ -28,7 +28,7 @@ else {
 $files = Get-ChildItem -Path $Source |
     Where-Object { $_.CreationTimeUtc -gt $LastCreationTime }
 $sorted = $files | Sort-Object -Property CreationTime
--Filter '*.xml'
+
 [int[]]$Pids = @()
 foreach ($file in $sorted) {
     # Do not terminate at the beinning of the loop because nothing may ever get processed
