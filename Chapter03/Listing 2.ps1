@@ -1,8 +1,5 @@
 # Listing 2 - Disk Space Monitor Advanced
-param(
-    [Parameter(Mandatory = $true)]
-    [string]$CsvPath
-)
+$CsvPath = $env:csvpath
 
 # Convert disk space gathering to a function
 Function Get-DiskSpaceInfo {
@@ -19,7 +16,8 @@ Function Get-DiskSpaceInfo {
         @{Label = 'UsedGB'; Expression = {[math]::Round($_.Used/1GB,2)}},
         @{Label = 'FreeGB'; Expression = {[math]::Round($_.Free/1GB,2)}},
         @{Label = 'Date'; Expression = { $Date } },
-        @{Label = 'Computer'; Expression = { $env:COMPUTERNAME } } 
+        @{Label = 'Computer'; Expression = 
+            { [system.environment]::MachineName } }
 
     $DiskSpace
 }
