@@ -1,7 +1,8 @@
 # Practical-Automation-with-PowerShell Lab Setup
 The files contained here can be used to setup your lab environment, that will help you follow all the examples in the book
 
-**MainMachinceSetup.ps1** - Installs and setups most software required for the book
+## MainMachinceSetup.ps1
+Installs and setups most software required for the book
  - PowerShell 7
  - Chocolatey
  - Git
