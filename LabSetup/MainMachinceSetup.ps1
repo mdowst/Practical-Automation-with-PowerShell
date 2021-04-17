@@ -27,7 +27,7 @@ Function Test-ChocoInstall{
     try{
         $Before = $ErrorActionPreference
         $ErrorActionPreference = 'Stop'
-        $testchoco = powershell choco -v
+        $testchoco = choco -v
     }
     catch{
         $testchoco = $null
