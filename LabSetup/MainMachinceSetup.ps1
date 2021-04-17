@@ -1,4 +1,5 @@
-﻿Set-ExecutionPolicy Bypass -Scope Process -Force
+#Requires -RunAsAdministrator
+
 Function Test-InstalByInfoUrl($URL){
     $Install = $null
     Get-ChildItem "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall" | ForEach-Object{
