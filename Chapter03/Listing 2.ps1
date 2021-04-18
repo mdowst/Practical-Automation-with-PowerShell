@@ -1,5 +1,8 @@
 # Listing 2 - Disk Space Monitor Advanced
-$CsvPath = $env:csvpath
+param(
+    [Parameter(Mandatory = $true)]
+    [string]$CsvPath
+)
 
 # Convert disk space gathering to a function
 Function Get-DiskSpaceInfo {

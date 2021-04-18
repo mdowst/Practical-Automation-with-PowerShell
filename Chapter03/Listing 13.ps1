@@ -31,7 +31,7 @@ $sorted = $files | Sort-Object -Property CreationTime
 
 [int[]]$Pids = @()
 foreach ($file in $sorted) {
-    # Do not terminate at the beinning of the loop because nothing may ever get processed
+    # Do not terminate at the beginning of the loop because nothing may ever get processed
     Get-Date $file.CreationTimeUtc -Format o | 
     Out-File $WatcherLog
     

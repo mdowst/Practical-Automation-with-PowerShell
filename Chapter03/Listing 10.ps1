@@ -10,7 +10,7 @@ $files = Get-ChildItem -Path $Source
 
 $sorted = $files | Sort-Object -Property CreationTime
 
-# create a int array to collect the process ids
+# Create an int array to collect the process ids
 [int[]]$Pids = @()
 foreach($file in $sorted){
     $Arguments =  "-file ""$script""",
@@ -21,17 +21,17 @@ foreach($file in $sorted){
         ArgumentList = $Arguments
         NoNewWindow = $true 
     }
-    # run job with PassThru switch to pass the process id to a variable
+    # Run job with PassThru switch to pass the process id to a variable
     $job = Start-Process @jobParams -PassThru
-    # add the process id to the array
+    # Add the process id to the array
     $Pids += $job.Id
     
-    # if the number of process ids is great than or equal to the number of current jobs loop until it drops
+    # If the number of process ids is greater than or equal to the number of current jobs loop until it drops.
     while($Pids.Count -ge $ConcurrentJobs){
         $Pids = @(Get-Process -Id $Pids -ErrorAction SilentlyContinue |
-        # Get-Process will only return processes that are running, so requery it to find total number running
+        # Get-Process will only return running processes, so execute it to find the total number running.
             Select-Object -ExpandProperty Id)
-        # Pause 1 second before checking again to help reduce number of times you query the running processes
+        # Pause 1 second before checking again to help reduce the number of times you query the running processes.
         Start-Sleep -Seconds 1
         Write-Host "Pausing PID count : $($Pids.Count)"
     }

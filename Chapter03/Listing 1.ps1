@@ -8,7 +8,8 @@ $DiskSpace = Get-PSDrive -PSProvider FileSystem |
     @{Label='UsedGB';Expression={[math]::Round($_.Used / 1GB, 2)}},
     @{Label='FreeGB';Expression={[math]::Round($_.Free / 1GB, 2)}},
     @{Label='Date';Expression={Get-Date}},
-    @{Label='Computer';Expression={$env:COMPUTERNAME}} 
+    @{Label = 'Computer'; Expression = 
+            { [system.environment]::MachineName } }
 
 # Export data to CSV with append
 $DiskSpace | Export-Csv -Path $CsvPath -Append

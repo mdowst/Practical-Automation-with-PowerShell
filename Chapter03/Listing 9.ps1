@@ -19,6 +19,6 @@ foreach($file in $sorted){
         ArgumentList = $Arguments
         NoNewWindow = $true
     }
-    # use Start process to start a new PowerShell instance calling the action script
+    # Use Start-Process to start a new PowerShell instance calling the action script
     Start-Process @jobParams
 }

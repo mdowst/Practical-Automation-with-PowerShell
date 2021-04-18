@@ -61,7 +61,7 @@ Function Move-ItemAdvanced {
     Move-Item @moveParams
 }
 
-# Test that the file is found. If not write to log and stop processing
+# Test that the file is found. If not, write to log and stop processing
 if(-not (Test-Path $FilePath)){
     "$(Get-Date) : File not found" | Out-File $LogPath -Append
     break
@@ -74,13 +74,13 @@ $Arguments = @{
     Destination = $Destination
 }
 
-# wrap the move command in a try/catch with error action set to stop
+# Wrap the move command in a try/catch with an error action set to stop
 try{
     Move-ItemAdvanced @Arguments -ErrorAction Stop
 }
-# catch will only run if an error is returned from within the try block
+# Catch will only run if an error is returned from within the try block
 catch{
-    # create custom message that includes the file patch and the failure reason captured as $_
+    # Create a custom message that includes the file path and the failure reason captured as $_
     $message = "Error moving '$($FilePath)' : $($_)"
     "$(Get-Date) : $message" | Out-File $LogPath -Append
 }

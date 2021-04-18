@@ -8,7 +8,7 @@ param(
     # Set a path to a log file to use for this watcher
 )
 
-# if the watch log exists extract the date from it and convert to datetime
+# If the watch log exists, extract the date from it and converts it to DateTime
 if(Test-Path $WatcherLog){
     $logDate = Get-Content $WatcherLog -Raw
     try{
@@ -22,7 +22,7 @@ else{
     $LastCreationTime = Get-Date 1970-01-01
 }
 
-# filter results to only return items after last date
+# Filter results to only return items after the last date
 $files = Get-ChildItem -Path $Source | 
     Where-Object{$_.CreationTimeUtc -gt $LastCreationTime}
 
@@ -30,7 +30,7 @@ $sorted = $files | Sort-Object -Property CreationTime
 
 [int[]]$Pids = @()
 foreach($file in $sorted){
-    # write the create time of the file to the log to prevent it from being picked up again
+    # Write the create time of the file to the log to prevent it from being picked up again
     Get-Date $file.CreationTimeUtc -Format o | 
         Out-File $WatcherLog
     $Arguments =  "-file ""$ActionScript""",

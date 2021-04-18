@@ -4,7 +4,7 @@ param(
     $Destination = '.\CH03\Watcher\Destination'
 )
 
-# Add new function to perform file checks if duplicate is found
+# Add new function to perform file checks when a duplicate is found
 Function Move-ItemAdvanced {
     [CmdletBinding()]
     [OutputType()]
@@ -37,7 +37,7 @@ Function Move-ItemAdvanced {
             $FileMatch = $false
         }
 
-        # they don't all match then create a unique filename with the timestamp
+        # If they don't all match, then create a unique filename with the timestamp
         if($FileMatch -eq $false){
             $ts = (Get-Date).ToFileTimeUtc()
             $name = $file.BaseName + "_" + $ts + $file.Extension
@@ -56,7 +56,7 @@ Function Move-ItemAdvanced {
         Path = $file.FullName
         Destination = $DestinationFile
     }
-    # if the two file matched force an overwrite on the move
+    # If the two files matched force an overwrite on the move
     if($FileMatch -eq $true){
         $moveParams.Add('Force',$true)
     }
@@ -65,7 +65,7 @@ Function Move-ItemAdvanced {
 
 $files = Get-ChildItem -Path $Source
 
-# Sort the files based on created time ensuring files are processed in the order they are received
+# Sort the files based on created time, ensuring files are processed in the order they are received
 $sorted = $files | Sort-Object -Property CreationTime
 
 # call your new function for each file found
