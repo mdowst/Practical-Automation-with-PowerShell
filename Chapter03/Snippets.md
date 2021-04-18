@@ -1,6 +1,6 @@
 # Snippet 1 - Disk Space Monitor Get Disks
 ```powershell
-PS P:\> Get-PSDrive
+Get-PSDrive
 ```
 ```
 Name           Used (GB)     Free (GB) Provider      Root
@@ -20,7 +20,7 @@ WSMan                                  WSMan
 ```
 # Snippet 2 - Filter down to only file systems
 ```powershell
-PS P:\> Get-PSDrive -PSProvider FileSystem
+Get-PSDrive -PSProvider FileSystem
 ```
 ```
 Name           Used (GB)     Free (GB) Provider      Root
@@ -33,7 +33,7 @@ Temp               17.97         31.42 FileSystem    C:\Users\user\Temp\
 
 # Snippet 3 - Remove Temp Folder
 ```powershell
-PS P:\> Get-PSDrive -PSProvider FileSystem |
+Get-PSDrive -PSProvider FileSystem |
     Where-Object{$_.Name -ne 'Temp'} 
 ```
 ```
@@ -46,7 +46,7 @@ P                   0.04          9.94 FileSystem    P:\
 
 # Snippet 4 - Convert to JSON to see true output
 ```powershell
-PS P:\> Get-PSDrive -PSProvider FileSystem | 
+Get-PSDrive -PSProvider FileSystem | 
     Where-Object{$_.Name -ne 'Temp'} | 
     ConvertTo-Json -Depth 1
 ```
@@ -70,7 +70,7 @@ PS P:\> Get-PSDrive -PSProvider FileSystem |
 
 # Snippet 5 - User Select-Object to get only the information you want
 ```powershell
-PS P:\> Get-PSDrive -PSProvider FileSystem | 
+Get-PSDrive -PSProvider FileSystem | 
     Where-Object{$_.Name -ne 'Temp'} |
     Select-Object -Property Name, Used, Free
 ```
@@ -84,7 +84,7 @@ P       42938368 10675601408
 
 # Snippet 6 - Convert values to GB
 ```powershell
-PS P:\> Get-PSDrive -PSProvider FileSystem | 
+Get-PSDrive -PSProvider FileSystem | 
     Where-Object{$_.Name -ne 'Temp'} |
     Select-Object -Property Name, 
     @{Label='UsedGB';Expression={$_.Used / 1GB}}, 
@@ -100,7 +100,7 @@ P    0.0399894714355469 9.94242858886719
 
 # Snippet 7 - Round Values
 ```powershell
-PS P:\> Get-PSDrive -PSProvider FileSystem | 
+Get-PSDrive -PSProvider FileSystem | 
     Where-Object{$_.Name -ne 'Temp'} |
     Select-Object -Property Name,
     @{Label='UsedGB';Expression={[math]::Round($_.Used / 1GB, 2)}},
@@ -116,7 +116,7 @@ P      0.04   9.94
 
 # Snippet 8 - Add additional information
 ```powershell
-PS P:\> Get-PSDrive -PSProvider FileSystem | 
+Get-PSDrive -PSProvider FileSystem | 
     Where-Object{$_.Name -ne 'Temp'} |
     Select-Object -Property Name,
     @{Label='UsedGB';Expression={[math]::Round($_.Used / 1GB, 2)}},
@@ -152,55 +152,55 @@ if (-not (Test-Path -Path $CsvFolder)) {
 
 # Snippet 11 - Create Scheduled Task trigger
 ```powershell
-PS P:\> $Trigger = New-ScheduledTaskTrigger -Daily -At 8am
+$Trigger = New-ScheduledTaskTrigger -Daily -At 8am
 ```
 
 # Snippet 12 - Set Scheduled Task execution path
 ```powershell
-PS P:\> $Execute = "C:\Program Files\PowerShell\7\pwsh.exe"
+$Execute = "C:\Program Files\PowerShell\7\pwsh.exe"
 ```
 
 # Snippet 13 - Set Scheduled Task arguments
 ```powershell
-PS P:\> $Argument = '-File ' +
+$Argument = '-File ' +
     '"C:\Scripts\Export-DiskSpaceInfo.ps1"' +
     ' -CsvPath "C:\Logs\DiskSpaceMonitor.csv"'
 ```
 
 # Snippet 14 - Set Scheduled Task Action
 ```powershell
-PS P:\> $ScheduledTaskAction = @{
+$ScheduledTaskAction = @{
     Execute = $Execute 
     Argument = $Argument
 }
-PS P:\> $Action = New-ScheduledTaskAction @ScheduledTaskAction
+$Action = New-ScheduledTaskAction @ScheduledTaskAction
 ```
 
 # Snippet 15 - Create new Scheduled Task
 ```powershell
-PS P:\> $ScheduledTask = @{
+$ScheduledTask = @{
     TaskName = "PoSHAutomation\DiskSpaceMonitor"
     Trigger  = $Trigger
     Action   = $Action
     User     = 'NT AUTHORITY\SYSTEM'
 }
-PS P:\> Register-ScheduledTask @ScheduledTask
+Register-ScheduledTask @ScheduledTask
 ```
 
 # Snippet 16- Export Scheduled Task
 ```powershell
-PS P:\> $ScheduledTask = @{
+$ScheduledTask = @{
     TaskName = "DiskSpaceMonitor"
     TaskPath = "\PoSHAutomation\"
 }
-PS P:\> $export = Export-ScheduledTask @ScheduledTask
-PS P:\> $export | Out-File "\\srv01\PoSHAutomation\DiskSpaceMonitor.xml"
+$export = Export-ScheduledTask @ScheduledTask
+$export | Out-File "\\srv01\PoSHAutomation\DiskSpaceMonitor.xml"
 ```
 
 # Snippet 17- Import Scheduled Task
 ```powershell
-PS P:\> $xml = Get-Content "\\srv01\PoSHAutomation\DiskSpaceMonitor.xml" -Raw
-PS P:\> Register-ScheduledTask -Xml $xml -TaskName "PoSHAutomation\DiskSpaceMonitor"
+$xml = Get-Content "\\srv01\PoSHAutomation\DiskSpaceMonitor.xml" -Raw
+Register-ScheduledTask -Xml $xml -TaskName "PoSHAutomation\DiskSpaceMonitor"
 ```
 
 # Snippet 18 - Run ps1 from Linux terminal
@@ -230,12 +230,12 @@ $CsvPath = $env:cvspath
 
 # Snippet 23 - Measure Watcher Execution Time
 ```powershell
-PS P:\> $jobParams = @{
+$jobParams = @{
     FilePath = 'pwsh'
     ArgumentList = 'C:\Scripts\Watch-Folder.ps1'
     NoNewWindow = $true
 }
-PS P:\> Measure-Command -Expression {
+Measure-Command -Expression {
     $job = Start-Process @jobParams -Wait}
 ```
 ```
@@ -254,10 +254,10 @@ TotalMilliseconds : 2017.3926
 
 # Snippet 24 - Stopwatch
 ```powershell
-PS P:\> $Timer =  [system.diagnostics.stopwatch]::StartNew()
-PS P:\> Start-Sleep -Seconds 3
-PS P:\> $Timer.Elapsed
-PS P:\> $Timer.Stop()
+$Timer =  [system.diagnostics.stopwatch]::StartNew()
+Start-Sleep -Seconds 3
+$Timer.Elapsed
+$Timer.Stop()
 ```
 ```
 Days              : 0
