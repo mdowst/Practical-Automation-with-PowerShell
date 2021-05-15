@@ -74,7 +74,7 @@ $jobParams = @{
     FilePath = "C:\Program Files\PowerShell\7\pwsh.exe"
     ArgumentList = $Argument
     NoNewWindow = $true
-    }
+}
 Measure-Command -Expression {
     $job = Start-Process @jobParams -Wait}
 ```
