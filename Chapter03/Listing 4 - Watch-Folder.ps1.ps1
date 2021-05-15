@@ -1,17 +1,28 @@
 # Listing 4 - Watch-Folder.ps1
 param(
-    $Source = '.\CH03\Watcher\Source',
-    $Destination = '.\CH03\Watcher\Destination',
-    $ActionScript = '.\CH03\Watcher\Move-WatcherFile.ps1',
-    $ConcurrentJobs = 10,
-    $WatcherLog = '.\CH03\Watcher\Logs\Watch-Folder.log',
-    $TimeLimit = 30
+    [Parameter(Mandatory = $true)]
+    [string]$Source,
+    
+    [Parameter(Mandatory = $true)]
+    [string]$Destination,
+    
+    [Parameter(Mandatory = $true)]
+    [string]$ActionScript,
+    
+    [Parameter(Mandatory = $true)]
+    [int]$ConcurrentJobs,
+    
+    [Parameter(Mandatory = $true)]
+    [string]$WatcherLog,
+    
+    [Parameter(Mandatory = $true)]
+    [int]$TimeLimit
 )
 
 # Start Stopwatch timer
 $Timer = [system.diagnostics.stopwatch]::StartNew()
 
-# check if log file exists and set filter date if it does.
+# Check if the log file exists and set filter date if it does.
 if (Test-Path $WatcherLog) {
     $logDate = Get-Content $WatcherLog -Raw
     try {
@@ -63,10 +74,11 @@ foreach ($file in $sorted) {
             Select-Object -ExpandProperty Id)
     }
 
-    # Check if the total execution time is great than the timelimit
+    # Check if the total execution time is greater than the time limit
     if ($Timer.Elapsed.TotalSeconds -gt $TimeLimit) {
         Write-Host "Graceful terminating after $TimeLimit seconds"
         # The 'break' command is used to exit the foreach loop, stopping the script since there is nothing after the loop
         break
     }
+}
 }
