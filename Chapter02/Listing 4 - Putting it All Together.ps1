@@ -1,4 +1,6 @@
-# Listing 8 Putting it All Together
+﻿# Listing 4 - Putting it All Together
+[CmdletBinding()]
+[OutputType()]
 param(
     [Parameter(Mandatory = $true)]
     [string]$LogPath,
@@ -8,11 +10,12 @@ param(
 
     [Parameter(Mandatory = $true)]
     [string]$ZipPrefix,
-    
+
     [Parameter(Mandatory = $false)]
     [double]$NumberOfDays = 30
 )
 
+# Declare your functions before the script code
 Function Set-ArchiveFilePath{
     [CmdletBinding()]
     [OutputType([string])]
@@ -31,10 +34,10 @@ Function Set-ArchiveFilePath{
         New-Item -Path $ZipPath -ItemType Directory | Out-Null
         Write-Verbose "Created folder '$ZipPath'"
     }
-    
+
     $ZipName = "$($ZipPrefix)$($Date.ToString('yyyyMMdd')).zip"
     $ZipFile = Join-Path $ZipPath $ZipName
-    
+
     if(Test-Path -Path $ZipFile){
         throw "The file '$ZipFile' already exists"
     }
@@ -58,8 +61,7 @@ Function Remove-ArchivedFiles {
 
     $AssemblyName = 'System.IO.Compression.FileSystem'
     Add-Type -AssemblyName $AssemblyName | Out-Null
-    
-    
+
     $OpenZip = [System.IO.Compression.ZipFile]::OpenRead($ZipFile)
     $ZipFileEntries = $OpenZip.Entries
 
@@ -75,18 +77,26 @@ Function Remove-ArchivedFiles {
     }
 }
 
+# Set the date filter based on the number of days in the past
 $Date = (Get-Date).AddDays(-$NumberOfDays)
-$files = Get-ChildItem -Path $LogPath -File | 
+# Get the files to archive based on the date filter
+$files = Get-ChildItem -Path $LogPath -File |
     Where-Object{ $_.LastWriteTime -lt $Date}
 
-
 $ZipParameters = @{
-    ZipPath = $ZipPath 
-    ZipPrefix = $ZipPrefix 
+    ZipPath = $ZipPath
+    ZipPrefix = $ZipPrefix
     Date = $Date
 }
+# Get the archive file path
 $ZipFile = Set-ArchiveFilePath @ZipParameters
 
+# Add the files to the archive file
 $files | Compress-Archive -DestinationPath $ZipFile
 
-Remove-ArchivedFiles -ZipFile $ZipFile -FilesToDelete $files
+$RemoveFiles = @{
+    ZipFile = $ZipFile
+    FilesToDelete = $files
+}
+# confirm files are in the archive and delete
+Remove-ArchivedFiles @RemoveFiles

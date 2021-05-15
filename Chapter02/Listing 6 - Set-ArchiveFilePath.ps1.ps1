@@ -1,4 +1,4 @@
-# Listing 5 Test Archive Path Function
+﻿# Listing 6 - Set-ArchiveFilePath.ps1
 Function Set-ArchiveFilePath{
     [CmdletBinding()]
     [OutputType([string])]
@@ -17,10 +17,10 @@ Function Set-ArchiveFilePath{
         New-Item -Path $ZipPath -ItemType Directory | Out-Null
         Write-Verbose "Created folder '$ZipPath'"
     }
-    
+
     $ZipName = "$($ZipPrefix)$($Date.ToString('yyyyMMdd')).zip"
     $ZipFile = Join-Path $ZipPath $ZipName
-    
+
     if(Test-Path -Path $ZipFile){
         throw "The file '$ZipFile' already exists"
     }

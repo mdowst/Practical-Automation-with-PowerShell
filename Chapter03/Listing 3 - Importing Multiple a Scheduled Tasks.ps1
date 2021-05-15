@@ -1,4 +1,4 @@
-# Listing 4 - Importing Multiple a Scheduled Tasks
+# Listing 3 - Importing Multiple a Scheduled Tasks
 $Share = "\\srv01\PoSHAutomation\"
 # Get all the XML files in the folder path
 $TaskFiles = Get-ChildItem -Path $Share -Filter "*.xml"
