@@ -147,6 +147,6 @@ $ModuleInstall = 'If(-not(Get-Module {0} -ListAvailable))' +
 foreach($module in 'dbatools','Mailozaurr'){
     $InstallCommand = $ModuleInstall -f $module
     $Arguments = '-Command "& {' + $InstallCommand +'}"'
-    Start-Process -FilePath 'pswh' -ArgumentList $Arguments -Wait
+    Start-Process -FilePath 'pwsh' -ArgumentList $Arguments -Wait
     Start-Process -FilePath 'powershell' -ArgumentList $Arguments -Wait
 }

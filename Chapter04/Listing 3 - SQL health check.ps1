@@ -1,10 +1,10 @@
 # Listing 3 - SQL health check
 param(
-    [string]$SQLVault = 'SQLHealthCheck',
-    [string]$SQLInstance = 'SQLServer',
-    [string]$SmtpVault = 'SmtpKeePass',
-    [string]$FromSecret = 'SendGrid',
-    [string]$SendTo = 'mdowst@gmail.com'
+    [string]$SQLVault,
+    [string]$SQLInstance,
+    [string]$SmtpVault,
+    [string]$FromSecret,
+    [string]$SendTo
 )
 # Retrieve credentials for SQL server connection
 $Secret = @{
@@ -23,7 +23,7 @@ $SQLServer = Get-Secret @Secret -AsPlainText
 $DbaDiagnosticQuery = @{
 	SqlInstance   = $SQLServer
 	SqlCredential = $SqlCredential
-	QueryName     = 'DatabaseProperties'
+	QueryName     = 'Database Properties'
 }
 $HealthCheck = Invoke-DbaDiagnosticQuery @DbaDiagnosticQuery
 $failedCheck = $HealthCheck.Result | 
