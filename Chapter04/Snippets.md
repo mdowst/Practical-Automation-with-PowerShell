@@ -38,7 +38,6 @@ $NetCred = $Credential.GetNetworkCredential()
 $NetCred
 ```
 ```
-
 UserName    Domain
 --------    ------
 BGates      Contoso
@@ -60,18 +59,16 @@ Enter password:
 ********
 Enter password again for verification:
 ********
-
       Scope Authentication PasswordTimeout Interaction
       ----- -------------- --------------- -----------
 CurrentUser       Password             900      Prompt
 ```
 
-# Snippet 8 - Setting up the SecretStore
+# Snippet 8 - Setting up the SecretStore to be non-interactive
 ```powershell
 Set-SecretStoreConfiguration -Authentication None -Interaction None
 ```
 ```
-
 Confirm
 Are you sure you want to perform this action?
 Performing the operation "Changes local store configuration" on target "SecretStore module local store".
@@ -82,61 +79,39 @@ Enter password:
 ********
 ```
 
-# Snippet 9 - Registering the SecretStore
+# Snippet 9 - Registering the SQLHealthCheck SecretStore
 ```powershell
-Register-SecretVault -ModuleName Microsoft.PowerShell.SecretStore -Name PoshAutomate
+Register-SecretVault -ModuleName Microsoft.PowerShell.SecretStore -Name SQLHealthCheck
 ```
 
-# Snippet 10 - Create secrets to store examples
-```powershell
-$Secret = Read-Host -AsSecureString
-Set-Secret -Name 'APIKey' -Secret $Secret -Vault PoshAutomate
-$Credential = Get-Credential
-Set-Secret -Name AzureCreds -Secret $Credential -Vault PoshAutomate
-```
-
-# Snippet 11 - Install KeePass extension
+# Snippet 10 - Install KeePass extension
 ```powershell
 Install-Module SecretManagement.KeePass
 ```
 
-# Snippet 12 - Register the KeePass vault
+# Snippet 11 - Register the SmtpKeePass KeePass vault
 ```powershell
-Register-SecretVault -Name 'MyKeepass' -ModuleName SecretManagement.Keepass -VaultParameters @{
+Register-SecretVault -Name 'SmtpKeePass' -ModuleName SecretManagement.KeePass -VaultParameters @{
 ```
 ```
-    Path = "D:\Automation\PoshAutomate.kdbx"
+    Path = "\\ITShare\Automation\SmtpKeePass.kdbx"
     UseMasterPassword = $false
-    KeyPath= "C:\Users\svcacct\\PoshAutomate.keyx"
+    KeyPath= "C:\Users\svcacct\SmtpKeePass.keyx"
 }
 ```
 
-# Snippet 13 - Retrieve secrets
+# Snippet 12 - Set the SQL secrets in the SQLHealthCheck SecretStore
 ```powershell
-Get-Secret -Name 'Sample1' -Vault 'MyKeepass'
+$Credential = Get-Credential
+Set-Secret -Name TestSQL -Secret $Credential -Vault SQLHealthCheck
+$SQLServer = Read-Host
+Set-Secret -Name TestSQLCredential -Secret $SQLServer -Vault SQLHealthCheck
 ```
 
-# Snippet 14 - Retrieve secrets as plain text
+# Snippet 13 - Set the SendGrid secrets in the SmtpKeePass KeePass vault
 ```powershell
-Get-Secret -Name 'Sample1' -Vault PoshAutomate -AsPlainText
-```
-
-# Snippet 15 - Create certificate
-```powershell
-$$certParams = @{
-    CertStoreLocation = "cert:\CurrentUser\My"
-    Subject           = "CN=PoshAutomate"
-    KeySpec           = 'KeyExchange'
-}
-$cert = New-SelfSignedCertificate $certParams
-```
-
-# Snippet 16 - Install AzureAD module
-```powershell
-Install-Module AzureAd -Scope CurrentUser
-```
-
-# Snippet 17 - Install Az module
-```powershell
-Install-Module Az
+$SmtpFrom = Read-Host -AsSecureString
+Set-Secret -Name SendGrid -Secret $SmtpFrom -Vault SmtpKeePass
+$Credential = Get-Credential
+Set-Secret -Name SendGridKey -Secret $Credential -Vault SmtpKeePass
 ```
