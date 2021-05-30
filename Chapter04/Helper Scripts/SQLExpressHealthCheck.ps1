@@ -1,4 +1,6 @@
-﻿Import-Module dbatools
+﻿
+
+Import-Module dbatools
 Import-Module Mailozaurr
 
 ## Define the tests to run

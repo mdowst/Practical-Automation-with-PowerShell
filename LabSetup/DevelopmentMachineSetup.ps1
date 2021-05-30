@@ -117,6 +117,7 @@ Write-Progress -Activity 'Configuring' -Status 'Cloning Practical-Automation-wit
 Set-Location $env:USERPROFILE
 Invoke-Expression -Command "git clone https://github.com/mdowst/Practical-Automation-with-PowerShell.git" -ErrorVariable $gitError 
 
+# Launch VSCode workspace
 Write-Progress -Activity 'Configuring' -Status 'Launching VS Code...' -PercentComplete 100
-$workspace = Join-Path -Path (Get-Location).Path -ChildPath 'Practical-Automation-with-PowerShell'
-Invoke-Expression -Command "code $workspace"
+$workspace = Join-Path -Path (Get-Location).Path -ChildPath 'Practical-Automation-with-PowerShell\PoSHAutomate.code-workspace'
+Invoke-Expression -Command "code ""$workspace"""

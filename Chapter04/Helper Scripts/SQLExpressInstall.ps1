@@ -104,6 +104,9 @@ DEALLOCATE db_cursor
 
 Invoke-Sqlcmd -Query $AddSqlUserQuery -ServerInstance "$($env:COMPUTERNAME)\SQLEXPRESS"
 
+$GrantServerState = 'GRANT VIEW SERVER STATE TO sqlhealth'
+Invoke-Sqlcmd -Query $GrantServerState -ServerInstance "$($env:COMPUTERNAME)\SQLEXPRESS"
+
 Write-Host "Install dbatools and Mailozaurr"
 $ModuleInstall = 'If(-not(Get-Module {0} -ListAvailable))' +
     '{{Write-Host "Installing {0}...";' +
@@ -112,7 +115,7 @@ $ModuleInstall = 'If(-not(Get-Module {0} -ListAvailable))' +
     'else{{Write-Host "{0} is already installed";' +
     'Start-Sleep -Seconds 3}}'
 
-foreach($module in 'dbatools','Mailozaurr'){
+foreach($module in 'Microsoft.PowerShell.SecretStore','Microsoft.PowerShell.SecretManagement','SecretManagement.KeePass'){
     $InstallCommand = $ModuleInstall -f $module
     $Arguments = '-Command "& {' + $InstallCommand +'}"'
     $jobParams = @{
