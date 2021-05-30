@@ -102,10 +102,10 @@ Register-SecretVault -Name 'SmtpKeePass' -ModuleName SecretManagement.KeePass -V
 
 # Snippet 12 - Set the SQL secrets in the SQLHealthCheck SecretStore
 ```powershell
+$SQLServer = "$($env:COMPUTERNAME)\SQLEXPRESS"
+Set-Secret -Name TestSQL -Secret $SQLServer -Vault SQLHealthCheck
 $Credential = Get-Credential
-Set-Secret -Name TestSQL -Secret $Credential -Vault SQLHealthCheck
-$SQLServer = Read-Host
-Set-Secret -Name TestSQLCredential -Secret $SQLServer -Vault SQLHealthCheck
+Set-Secret -Name TestSQLCredential -Secret $Credential -Vault SQLHealthCheck
 ```
 
 # Snippet 13 - Set the SendGrid secrets in the SmtpKeePass KeePass vault

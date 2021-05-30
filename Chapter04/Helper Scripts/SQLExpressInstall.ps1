@@ -65,6 +65,25 @@ Write-Host "Start Services"
 Start-Service -Name 'SQLBrowser'
 Restart-Service -Name 'MSSQL$SQLEXPRESS'
 
+Write-Host "Create PoshTestDB database"
+$createDB = @'
+IF EXISTS 
+   (
+     SELECT name FROM master.dbo.sysdatabases 
+    WHERE name = N'PoshTestDB'
+    )
+BEGIN
+    SELECT 'Database PoshTestDB already Exist' AS Message
+END
+ELSE
+BEGIN
+    CREATE DATABASE [PoshTestDB]
+	ALTER DATABASE [PoshTestDB] SET RECOVERY FULL 
+    SELECT 'PoshTestDB Database is Created'
+END
+'@
+Invoke-Sqlcmd -Query $createDB -ServerInstance "$($env:COMPUTERNAME)\SQLEXPRESS"
+
 # Create health check account
 Write-Host "Create health check account"
 $AddSqlUserQuery = @'
@@ -115,6 +134,8 @@ Invoke-Sqlcmd -Query $AddSqlUserQuery -ServerInstance "$($env:COMPUTERNAME)\SQLE
 $GrantServerState = 'GRANT VIEW SERVER STATE TO sqlhealth'
 Invoke-Sqlcmd -Query $GrantServerState -ServerInstance "$($env:COMPUTERNAME)\SQLEXPRESS"
 
+Restart-Service -Name 'MSSQL$SQLEXPRESS'
+
 Write-Host "Install dbatools and Mailozaurr"
 $ModuleInstall = 'If(-not(Get-Module {0} -ListAvailable))' +
     '{{Write-Host "Installing {0}...";' +
@@ -126,9 +147,6 @@ $ModuleInstall = 'If(-not(Get-Module {0} -ListAvailable))' +
 foreach($module in 'dbatools','Mailozaurr'){
     $InstallCommand = $ModuleInstall -f $module
     $Arguments = '-Command "& {' + $InstallCommand +'}"'
-    $jobParams = @{
-        FilePath     = 'pwsh'
-        ArgumentList = $Arguments
-    }
-    Start-Process @jobParams -Wait
+    Start-Process -FilePath 'pswh' -ArgumentList $Arguments -Wait
+    Start-Process -FilePath 'powershell' -ArgumentList $Arguments -Wait
 }

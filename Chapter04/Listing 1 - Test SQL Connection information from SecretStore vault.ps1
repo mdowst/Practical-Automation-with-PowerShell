@@ -19,6 +19,3 @@ $DbaQuery = @{
 	SqlCredential = $SqlCredential
 }
 Invoke-DbaQuery @DbaQuery
-
-$SqlName  = 'TestSQL'
-$SqlCred  = "$($SqlName)Credential"
