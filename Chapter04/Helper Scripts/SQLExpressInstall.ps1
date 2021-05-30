@@ -1,4 +1,12 @@
-﻿$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+﻿#Requires -RunAsAdministrator
+
+Write-Host "Execute the initial machine setup to download source code and setup PowerShell 7"
+Set-ExecutionPolicy Bypass -Scope Process -Force; 
+$SetupScript = 'https://raw.githubusercontent.com/mdowst/Practical-Automation-with-PowerShell/main/LabSetup/DevelopmentMachineSetup.ps1'
+Invoke-Expression ((New-Object System.Net.WebClient).DownloadString($SetupScript))
+
+Write-Host "Starting SQL Express install and setup"
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 $listInstalls = choco list --local-only
 if($listInstalls | Where-Object{ $_ -like 'sql-server-express*' }){
     Write-Host "SQL Server Express is already installed"
@@ -115,7 +123,7 @@ $ModuleInstall = 'If(-not(Get-Module {0} -ListAvailable))' +
     'else{{Write-Host "{0} is already installed";' +
     'Start-Sleep -Seconds 3}}'
 
-foreach($module in 'Microsoft.PowerShell.SecretStore','Microsoft.PowerShell.SecretManagement','SecretManagement.KeePass'){
+foreach($module in 'dbatools','Mailozaurr'){
     $InstallCommand = $ModuleInstall -f $module
     $Arguments = '-Command "& {' + $InstallCommand +'}"'
     $jobParams = @{
