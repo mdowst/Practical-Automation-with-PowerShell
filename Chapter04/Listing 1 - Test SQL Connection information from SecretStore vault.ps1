@@ -12,10 +12,10 @@ $Secret = @{
 }
 $SQLServer = Get-Secret @Secret -AsPlainText
 
-# Execute query against SQL to test connection information from the SecretStore vault.
-$DbaQuery = @{
+# Execute a diagnostic query against SQL to test connection information from the SecretStore vault.
+$DbaDiagnosticQuery = @{
 	SqlInstance   = $SQLServer
-	Query         = 'SELECT name FROM sys.databases'
 	SqlCredential = $SqlCredential
+	QueryName     = 'Database Properties'
 }
-Invoke-DbaQuery @DbaQuery
+Invoke-DbaDiagnosticQuery @DbaDiagnosticQuery -Verbose

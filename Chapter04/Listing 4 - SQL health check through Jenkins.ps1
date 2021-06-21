@@ -6,7 +6,7 @@ $secure = @{
     Force = $true
 }
 $Password = ConvertTo-SecureString @secure
-$Credential = New-Object System.Management.Automation.PSCredential `
+$SqlCredential = New-Object System.Management.Automation.PSCredential `
     ($ENV:sqlusername, $Password)
 
 # Replace Get-Secret call with Jenkins environment variables
