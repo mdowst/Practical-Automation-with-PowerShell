@@ -1,4 +1,4 @@
-# Listing 3 - Execute local script against remote commputers using WSMan and SSH remoting
+# Listing 3 - Execute local script against remote computers using WSMan and SSH remoting
 # Added variable for the default ssh username to use
 $SshUser = 'posh'
 # Remaining variables are unchanged
@@ -39,7 +39,7 @@ foreach ($s in $servers) {
         else {
             throw "connection test failed"
         }
-        # Create remote session using the parameters set based on the results of the Test-NetConnection commands.
+        # Create a remote session using the parameters set based on the results of the Test-NetConnection commands.
         $session = New-PSSession @PSSession
         $Sessions.Add($session)
     }

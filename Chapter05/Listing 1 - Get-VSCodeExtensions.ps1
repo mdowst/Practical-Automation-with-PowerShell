@@ -1,7 +1,6 @@
-# Listing 4 - Updated find installed Visual Studio Code extensions to output results to network share
-# Add a variable with the path to the network share.
-$CsvPath = '\\Srv01\IT\Automations\VSCode'
+# Listing 1 - Get-VSCodeExtensions.ps1
 [System.Collections.Generic.List[PSObject]] $extensions = @()
+# Set home folder path based on the operating system
 if ($IsLinux) {
     $homePath = '/home/'
 }
@@ -9,10 +8,13 @@ else {
     $homePath = "$($env:HOMEDRIVE)\Users"
 }
 
+# Get the subfolders under the home patch
 $homeDirs = Get-ChildItem -Path $homePath -Directory
 
+# Parse through each folder and check for VS Code extensions
 foreach ($dir in $homeDirs) {
     $vscPath = Join-Path $dir.FullName '.vscode\extensions'
+    # If the VS Code extension folder is present, search it for vsixmanifest files
     if (Test-Path -Path $vscPath) {
         $ChildItem = @{
             Path    = $vscPath
@@ -22,9 +24,12 @@ foreach ($dir in $homeDirs) {
         }
         $manifests = Get-ChildItem @ChildItem
         foreach ($m in $manifests) {
+            # Get the contents of the vsixmanifest file and convert it to PowerShell XML object
             [xml]$vsix = Get-Content -Path $m.FullName
+            # Get the details from the manifest and add them to the extensions list
             $vsix.PackageManifest.Metadata.Identity | 
             Select-Object -Property Id, Version, Publisher,
+            # Add the folder path, computer name, and date to the output
             @{l = 'Folder'; e = { $m.FullName } },
             @{l = 'ComputerName'; e = {[system.environment]::MachineName}},
             @{l = 'Date'; e = { Get-Date } } | 
@@ -32,7 +37,7 @@ foreach ($dir in $homeDirs) {
         }
     }
 }
-
+# If no extensions are found, return a PowerShell object with the same properties stating nothing found.
 if ($extensions.Count -eq 0) {
     $extensions.Add([pscustomobject]@{
             Id           = 'No extension found'
@@ -43,10 +48,5 @@ if ($extensions.Count -eq 0) {
             Date         = Get-Date
         })
 }
-# Create a unique file name by combining the machine name with a randomly generate GUID
-$fileName = [system.environment]::MachineName +
-    '-' + (New-Guid).ToString() + '.csv'
-# Combine the file name with the path of the network share
-$File = Join-Path -Path $CsvPath -ChildPath $fileName
-# Export the results to the CSV file
-$extensions | Export-Csv -Path $File -Append
+# Just like an extension include the output at the end
+$extensions

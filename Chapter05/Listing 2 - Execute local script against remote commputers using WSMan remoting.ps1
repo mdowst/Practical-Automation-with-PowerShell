@@ -5,7 +5,7 @@ $servers = 'Svr01', 'Svr02', 'Svr03'
 $CsvFile = 'P:\Scripts\VSCodeExtensions.csv'
 # The script file from listing 1
 $ScriptFile = 'P:\Scripts\Get-VSCodeExtensions.ps1'
-# Another CSV file to record connectoin errors
+# Another CSV file to record connection errors
 $ConnectionErrors = "P:\Scripts\VSCodeErrors.csv"
 
 # Test if the CSV file exists. If it does exclude the servers already scanned.
@@ -16,7 +16,7 @@ if (Test-Path -Path $CsvFile) {
 }
 
 [System.Collections.Generic.List[PSObject]] $Sessions = @()
-# connect to each server and add the session to the $Sessions array list
+# Connect to each server and add the session to the $Sessions array list
 foreach ($s in $servers) {
     $PSSession = @{
         ComputerName = $s
@@ -26,7 +26,7 @@ foreach ($s in $servers) {
         $Sessions.Add($session)
     }
     catch {
-        # Add any errors to the connectoin error CSV file
+        # Add any errors to the connection error CSV file
         [pscustomobject]@{
             ComputerName = $s
             Date         = Get-Date
