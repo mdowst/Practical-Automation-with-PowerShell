@@ -8,22 +8,22 @@ param(
 )
 # Retrieve credentials for SQL server connection
 $Secret = @{
-	Name  = "$($SQLInstance)Credential"
-	Vault = $SQLVault
+    Name  = "$($SQLInstance)Credential"
+    Vault = $SQLVault
 }
 $SqlCredential = Get-Secret @Secret
 # Retrieve the SQL server name and convert it to plain text.
 $Secret = @{
-	Name        = $SQLInstance
-	Vault       = $SQLVault
+    Name  = $SQLInstance
+    Vault = $SQLVault
 }
 $SQLServer = Get-Secret @Secret -AsPlainText
 
 # Execute the Database Properties diagnostic query against SQL
 $DbaDiagnosticQuery = @{
-	SqlInstance   = $SQLServer
-	SqlCredential = $SqlCredential
-	QueryName     = 'Database Properties'
+    SqlInstance   = $SQLServer
+    SqlCredential = $SqlCredential
+    QueryName     = 'Database Properties'
 }
 $HealthCheck = Invoke-DbaDiagnosticQuery @DbaDiagnosticQuery
 $failedCheck = $HealthCheck.Result | 

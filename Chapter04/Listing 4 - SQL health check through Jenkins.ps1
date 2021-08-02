@@ -13,9 +13,9 @@ $SqlCredential = New-Object System.Management.Automation.PSCredential `
 $SQLServer = $ENV:sqlserver
 
 $DbaDiagnosticQuery = @{
-	SqlInstance   = $SQLServer
-	SqlCredential = $SqlCredential
-	QueryName     = 'DatabaseProperties'
+    SqlInstance   = $SQLServer
+    SqlCredential = $SqlCredential
+    QueryName     = 'DatabaseProperties'
 }
 $HealthCheck = Invoke-DbaDiagnosticQuery @DbaDiagnosticQuery
 $failedCheck = $HealthCheck.Result | 
