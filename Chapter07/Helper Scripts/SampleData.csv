@@ -1,0 +1,7 @@
+"Name","OSType","OSVersion","Status","RemoteMethod","UUID","Source","SourceInstance"
+"Vm01","Linux","Ubuntu Linux (64-bit)","Active","PowerCLI","VirtualMachine-vm-1234","VMware","Cluster1"
+"Vm02","Windows","Microsoft Windows Server 2016","Active","PowerCLI","VirtualMachine-vm-2345","VMware","Cluster1"
+"Vm03","Linux","Ubuntu Linux (64-bit)","Active","PowerCLI","VirtualMachine-vm-3456","VMware","Cluster1"
+"Vm04","Linux","Ubuntu Linux (64-bit)","Active","PowerCLI","VirtualMachine-vm-4567","VMware","Cluster1"
+"Vm05","Windows","Microsoft Windows Server 2012","Active","PowerCLI","VirtualMachine-vm-5678","VMware","Cluster2"
+"Vm06","Linux","Ubuntu Linux (64-bit)","Active","PowerCLI","VirtualMachine-vm-6789","VMware","Cluster2"
