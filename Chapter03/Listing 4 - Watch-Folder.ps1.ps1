@@ -81,4 +81,3 @@ foreach ($file in $sorted) {
         break
     }
 }
-}

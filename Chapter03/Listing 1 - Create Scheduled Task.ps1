@@ -7,7 +7,7 @@ $Execute = "C:\Program Files\PowerShell\7\pwsh.exe"
 # Set Action arguments
 $Argument = '-File ' +
     '"C:\Scripts\Invoke-LogFileCleanup.ps1"' +
-    ' -LogPath "L:\Logs\" -ZipPath "L:\Archives\"' +
+    ' -LogPath "L:\Logs" -ZipPath "L:\Archives"' +
     ' -ZipPrefix "LogArchive-" -NumberOfDays 30'
 
 # Create the Scheduled Task Action

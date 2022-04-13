@@ -4,7 +4,7 @@ $Share = "\\srv01\PoSHAutomation\"
 $TaskFiles = Get-ChildItem -Path $Share -Filter "*.xml"
 
 # parse through each file and import the job
-foreach($task in $TaskFiles){
+foreach($FilePath in $TaskFiles){
     $xml = Get-Content $FilePath -Raw
     [xml]$xmlObject = $xml
     $TaskName = $xmlObject.Task.RegistrationInfo.URI
