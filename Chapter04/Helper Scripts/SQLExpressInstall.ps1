@@ -139,7 +139,6 @@ Restart-Service -Name 'MSSQL$SQLEXPRESS'
 Write-Host "Install dbatools and Mailozaurr"
 $ModuleInstall = 'If(-not(Get-Module {0} -ListAvailable))' +
     '{{Write-Host "Installing {0}...";' +
-    '[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;' +
     'Set-PSRepository PSGallery -InstallationPolicy Trusted;' +
     'Install-Module {0} -Confirm:$False -Force}}' +
     'else{{Write-Host "{0} is already installed";' +
@@ -149,4 +148,5 @@ foreach($module in 'dbatools','Mailozaurr'){
     $InstallCommand = $ModuleInstall -f $module
     $Arguments = '-Command "& {' + $InstallCommand +'}"'
     Start-Process -FilePath 'pwsh' -ArgumentList $Arguments -Wait
+    Start-Process -FilePath 'powershell' -ArgumentList $Arguments -Wait
 }

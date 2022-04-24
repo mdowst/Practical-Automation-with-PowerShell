@@ -1,0 +1,17 @@
+# Listing 4 - Get-SystemInfo.yaml
+name: PoshAutomator Pester Tests
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  pester-test:
+    name: Pester test
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Run the Get-SystemInfo.Unit.Test.ps1 Test File
+        shell: pwsh
+        run: |
+          Invoke-Pester .\Test\Get-SystemInfo.Test.ps1 -Passthru

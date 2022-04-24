@@ -3,8 +3,6 @@
 Get-TopProcess -TopN 5
 ```
 ```
-
-
   Id ProcessName   CPU
   -- -----------   ---
 1168 dwm           39,633.27
@@ -19,7 +17,6 @@ Get-TopProcess -TopN 5
 Set-ArchiveFilePath -ZipPath "L:\Archives\" -ZipPrefix "LogArchive-" -Date "2021-02-24" -Verbose
 ```
 ```
-
 VERBOSE: Created folder 'L:\Archives\'
 L:\Archives\LogArchive-20210124.zip
 ```
@@ -29,7 +26,6 @@ L:\Archives\LogArchive-20210124.zip
 Set-ArchiveFilePath -ZipPath "L:\Archives\" -ZipPrefix "LogArchive-" -Date "2021-02-24" -Verbose
 ```
 ```
-
 L:\Archives\LogArchive-20210124.zip
 ```
 
@@ -38,7 +34,6 @@ L:\Archives\LogArchive-20210124.zip
 Set-ArchiveFilePath -ZipPath "L:\Archives\" -ZipPrefix "LogArchive-" -Date "2021-02-24" -Verbose
 ```
 ```
-
 Exception:
 Line |
   24 |          throw "The file '$ZipFile' already exists"
@@ -92,13 +87,16 @@ $files = Get-ChildItem -Path $LogPath -File |
     Where-Object{ $_.LastWriteTime -lt $Date}
 ```
 
-# Snippet 12 - Test Listing 4 Putting it All Together - confirm values
+# Snippet 12 - Test Listing 4 Putting it All Together - confirm date value
 ```powershell
 $Date
 ```
 ```
 Sunday, January 10, 2021 7:59:29 AM
+```
 
+# Snippet 13 - Test Listing 4 Putting it All Together - confirm files value
+```powershell
 $files
 ```
 ```
@@ -114,29 +112,26 @@ Mode                 LastWriteTime         Length Name
 …
 ```
 
-# Snippet 13 - Test Listing 4 Putting it All Together - test Set-ArchiveFilePath
+# Snippet 14 - Test Listing 4 Putting it All Together - test Set-ArchiveFilePath
 ```powershell
 $ZipParameters = @{
-```
-```
-     >>     ZipPath = $ZipPath
-     >>     ZipPrefix = $ZipPrefix
-     >>     Date = $Date
-     >> }
-     >> $ZipFile = Set-ArchiveFilePath @ZipParameters
-
+    ZipPath = $ZipPath
+    ZipPrefix = $ZipPrefix
+    Date = $Date
+}
+$ZipFile = Set-ArchiveFilePath @ZipParameters
 $ZipFile
 ```
 ```
 L:\Archives\LogArchive-20210110.zip
 ```
 
-# Snippet 14 - Test Listing 4 Putting it All Together - test archiving files
+# Snippet 15 - Test Listing 4 Putting it All Together - test archiving files
 ```powershell
 $files | Compress-Archive -DestinationPath $ZipFile
 ```
 
-# Snippet 15 - Test Listing 4 Putting it All Together - test file removal with whatif
+# Snippet 16 - Test Listing 4 Putting it All Together - test file removal with whatif
 ```powershell
 Remove-ArchivedFiles -ZipFile $ZipFile -FilesToDelete $files -WhatIf
 ```
@@ -147,19 +142,19 @@ What if: Performing the operation "Remove File" on target "L:\Logs\u_ex20201114.
 What if: Performing the operation "Remove File" on target "L:\Logs\u_ex20201115.log".
 ```
 
-# Snippet 16 - Test Listing 4 Putting it All Together - test file removal
+# Snippet 17 - Test Listing 4 Putting it All Together - test file removal
 ```powershell
 Remove-ArchivedFiles -ZipFile $ZipFile -FilesToDelete $files
 ```
 
-# Snippet 17 - Import module function scripts from multiple folders
+# Snippet 18 - Import module function scripts from multiple folders
 ```powershell
 $Public = Join-Path $PSScriptRoot 'Public'
 $Private = Join-Path $PSScriptRoot 'Private'
 $Functions = Get-ChildItem -Path $Public,$Private -Filter '*.ps1'
 ```
 
-# Snippet 18 - Import custom module for testing
+# Snippet 19 - Import custom module for testing
 ```powershell
 P:\FileCleanupTools> Import-Module .\FileCleanupTools.psd1 -Force -PassThru
 
@@ -169,7 +164,7 @@ Script     1.0.0.0  FileCleanupTools {Remove-ArchivedFiles,
                                        Set-ArchiveFilePath}
 ```
 
-# Snippet 19 - Functions to export example
+# Snippet 20 - Functions to export example
 ```powershell
 FunctionsToExport = 'Remove-ArchivedFiles', 'Set-ArchiveFilePath'
 ```

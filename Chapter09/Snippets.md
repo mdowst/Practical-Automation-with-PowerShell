@@ -1,9 +1,9 @@
-﻿# Snippet 1 - 
+﻿# Snippet 1 - Load Word ComObject
 ```powershell
 $Word = New-Object -ComObject Word.Application
 ```
 
-# Snippet 2 - 
+# Snippet 2 - Load Office Interop DKK
 ```powershell
 $GAC = Join-Path $env:WINDIR 'assembly\GAC_MSIL'
 Get-ChildItem -Path $GAC -Recurse -Include 'Microsoft.Office.Interop.Word.dll','office.dll' | Foreach-Object{
@@ -11,7 +11,7 @@ Get-ChildItem -Path $GAC -Recurse -Include 'Microsoft.Office.Interop.Word.dll','
 }
 ```
 
-# Snippet 3 - 
+# Snippet 3 - View the methods and properties of the the Word object
 ```powershell
 $Word | Get-Member
 ```
@@ -34,7 +34,7 @@ AddIns                            Property              AddIns AddIns () {get}
 …
 ```
 
-# Snippet 4 - 
+# Snippet 4 - Create a new Word document
 ```powershell
 $Word = New-Object -ComObject Word.Application
 $Word.Visible = $True
@@ -42,12 +42,11 @@ $Document = $Word.Documents.Add()
 $Selection = $Word.Selection
 ```
 
-# Snippet 5 - 
+# Snippet 5 - Get the methods and properties of the current section
 ```powershell
-PS D:\> $Selection | Get-Member -Name TypeText, TypeParagraph
+$Selection | Get-Member -Name TypeText, TypeParagraph
 ```
 ```
-
    TypeName: System.__ComObject#{00020975-0000-0000-c000-000000000046}
 
 Name          MemberType Definition
@@ -56,16 +55,16 @@ TypeText      Method     void TypeText (string Text)
 TypeParagraph Method     void TypeParagraph ()
 ```
 
-# Snippet 6 - 
+# Snippet 6 - Create the document title
 ```powershell
 $Selection.Style = 'Title'
 $Selection.TypeText("$([system.environment]::MachineName) - System Document")
 $Selection.TypeParagraph()
 ```
 
-# Snippet 7 - 
+# Snippet 7 - View the methods avaiable for a Word table
 ```powershell
-PS D:\> $Selection.Tables.psobject.methods
+$Selection.Tables.psobject.methods
 ```
 ```
 OverloadDefinitions
@@ -75,15 +74,15 @@ Table AddOld (Range Range, int NumRows, int NumColumns)
 Table Add (Range Range, int NumRows, int NumColumns, Variant DefaultTableBehavior, Variant AutoFitBehavior)
 ```
 
-# Snippet 8 - 
+# Snippet 8 - Get the auto-fit enum
 ```powershell
 [Microsoft.Office.Interop.Word.WdAutoFitBehavior]::wdAutoFitContent
 ```
 
-# Snippet 9 - 
+# Snippet 9 - Get all the auto-fit options
 ```powershell
 [[Microsoft.Office.Interop.Word.WdAutoFitBehavior].GetEnumValues() |
- Select-Object @{l='Name';e={$_}}, @{l='value';e={$_.value__}}
+    Select-Object @{l='Name';e={$_}}, @{l='value';e={$_.value__}}
 ```
 ```
             Name Value
@@ -93,25 +92,25 @@ wdAutoFitContent     1
  wdAutoFitWindow     2
 ```
 
-# Snippet 10 - 
+# Snippet 10 - Add a new table to Word
 ```powershell
 $Table = $Selection.Tables.add($Word.Selection.Range, 3, 2,
   [Microsoft.Office.Interop.Word.WdDefaultTableBehavior]::wdWord9TableBehavior,
   [Microsoft.Office.Interop.Word.WdAutoFitBehavior]::wdAutoFitContent)
 ```
 
-# Snippet 11 - 
+# Snippet 11 - Populate test in the cells
 ```powershell
 $Table.Cell(1,1).Range.Text = 'First Cell'
 $Table.Cell(3,2).Range.Text = 'Last Cell'
 ```
 
-# Snippet 12 - 
+# Snippet 12 - Get the Windows OS information
 ```powershell
 $OperatingSystem = Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object Caption, InstallDate, ServicePackMajorVersion, OSArchitecture, BootDevice,  BuildNumber, CSName, @{l='Total Memory';e={[math]::Round($OS.TotalVisibleMemorySize/1MB)}}
 ```
 
-# Snippet 13 - 
+# Snippet 13 - Add the OS information to the Word document in a table
 ```powershell
 $OS = Get-CimInstance -Class Win32_OperatingSystem |
     Select-Object Caption, InstallDate, ServicePackMajorVersion,
@@ -120,7 +119,7 @@ $OS = Get-CimInstance -Class Win32_OperatingSystem |
 New-WordTableFromObject $OS
 ```
 
-# Snippet 14 - 
+# Snippet 14 - Add the disk information to the Word document in a table
 ```powershell
 $DiskInfo = Get-CimInstance -Class Win32_LogicalDisk |
     Select-Object DeviceId,
@@ -129,10 +128,10 @@ $DiskInfo = Get-CimInstance -Class Win32_LogicalDisk |
 New-WordTableFromArray $DiskInfo
 ```
 
-# Snippet 15 - 
+# Snippet 15 - Use a REST API to get your public IP address
 ```powershell
 $IP = Invoke-RestMethod -Uri 'https://api.ipify.org?format=json'
- $IP
+$IP
 ```
 ```
 ip
@@ -140,7 +139,7 @@ ip
 48.52.216.180
 ```
 
-# Snippet 16 - 
+# Snippet 16 - Use a REST API to get location information from the IP address
 ```powershell
 Invoke-RestMethod "https://sys.airtel.lv/ip2country/$($ip.ip)/?full=true"
 ```
@@ -152,7 +151,7 @@ lat     : 33.15
 lon     : -97.06
 ```
 
-# Snippet 17 - 
+# Snippet 17 - Add the REST API information to the Word document
 ```powershell
 $ip = Invoke-RestMethod -Uri 'https://api.ipify.org?format=json'
 $Selection.TypeText("IP Address  : $($ip.ip)")
@@ -162,13 +161,13 @@ $Selection.TypeText("IP Location : $($ipData.city), $($ipData.country)")
 $Selection.TypeParagraph()
 ```
 
-# Snippet 18 - 
+# Snippet 18 - Start process ping and wait for completion
 ```powershell
 Start-Process -FilePath 'ping.exe' -ArgumentList 'google.com'
 Start-Process -FilePath 'ping.exe' -ArgumentList 'google.com','-n 10'
 ```
 
-# Snippet 19 - 
+# Snippet 19 - Start process and monitor for completion
 ```powershell
 $RuntimeSeconds = 2
 $ping = Start-Process -FilePath 'ping.exe' -ArgumentList 'google.com','-n 10' -PassThru
@@ -183,7 +182,7 @@ $timer.Elapsed.TotalSeconds
 $timer.Stop()
 ```
 
-# Snippet 20 - 
+# Snippet 20 - Record external command output and errors
 ```powershell
 $Process = @{
 	FilePath               = 'Driverquery.exe'
@@ -198,7 +197,7 @@ Get-Content 'ErrorOutput.txt'
 Get-Content 'StdOutput.txt'
 ```
 
-# Snippet 21 - 
+# Snippet 21 - Record external command output and errors
 ```powershell
 $Process = @{
 	FilePath               = 'Driverquery.exe'
@@ -213,7 +212,7 @@ Get-Content 'ErrorOutput.txt'
 Get-Content 'StdOutput.txt'
 ```
 
-# Snippet 22 - 
+# Snippet 22 - Get Counter data to pass to the Python script
 ```powershell
 $sampleData = Get-Counter -Counter "\Processor(_Total)\% Processor Time" -SampleInterval 2 -MaxSamples 10
 ```

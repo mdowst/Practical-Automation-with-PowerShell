@@ -1,16 +1,21 @@
-# Snippet 1 - Set Scheduled Task arguments
+# Snippet 1 - Scheduled Task arguments example
+```powershell
+-File "C:\Scripts\Invoke-LogFileCleanup.ps1" -LogPath "L:\Logs\" -ZipPath "L:\Archives\" -ZipPrefix "LogArchive-" -NumberOfDays 30
+```
+
+# Snippet 2 - Set Scheduled Task arguments
 ```powershell
 $Argument = '-File ' +
     '"C:\Scripts\Invoke-LogFileCleanup.ps1"' +
     ' -LogPath "L:\Logs\" -ZipPath "L:\Archives\"' +
-	   ' -ZipPrefix "LogArchive-" -NumberOfDays 30'
+    ' -ZipPrefix "LogArchive-" -NumberOfDays 30'
 $Argument
 ```
 ```
 -File "C:\Scripts\Invoke-LogFileCleanup.ps1" -LogPath "L:\Logs\" -ZipPath "L:\Archives\" -ZipPrefix "LogArchive-" -NumberOfDays 30
 ```
 
-# Snippet 2 - Export Scheduled Task
+# Snippet 3 - Export Scheduled Task
 ```powershell
 $ScheduledTask = @{
     TaskName = "LogFileCleanup"
@@ -20,22 +25,22 @@ $export = Export-ScheduledTask @ScheduledTask
 $export | Out-File "\\srv01\PoSHAutomation\LogFileCleanup.xml"
 ```
 
-# Snippet 3 - Run ps1 from Linux terminal
+# Snippet 4 - Run ps1 from Linux terminal
 ```shell
 /snap/powershell/160/opt/powershell/pwsh -File "/home/posh/Invoke-LogFileCleanup.ps1" -LogPath "/etc/poshtest/Logs" -ZipPath "/etc/poshtest/Logs/Archives" -ZipPrefix "LogArchive-" -NumberOfDays 30
 ```
 
-# Snippet 4 - Open CronTab file as a different user
+# Snippet 5 - Open CronTab file as a different user
 ```shell
 crontab -u username -e
 ```
 
-# Snippet 5 - Schedule script in Cron
+# Snippet 6 - Schedule script in Cron
 ```shell
 * 8 * * * /snap/powershell/160/opt/powershell/pwsh -File "/home/posh/Invoke-LogFileCleanup.ps1" -LogPath "/etc/poshtest/Logs" -ZipPath "/etc/poshtest/Logs/Archives" -ZipPrefix "LogArchive-" -NumberOfDays 30
 ```
 
-# Snippet 6 - Subsitute parameters for Jenkins environment variables
+# Snippet 7 - Subsitute parameters for Jenkins environment variables
 ```powershell
 $LogPath = $env:logpath
 $ZipPath = $env:zippath
@@ -43,7 +48,7 @@ $ZipPrefix = $env:zipprefix
 $NumberOfDays = $env:numberofdays
 ```
 
-# Snippet 7 - Stopwatch example
+# Snippet 8 - Stopwatch example
 ```powershell
 $Timer =  [system.diagnostics.stopwatch]::StartNew()
 Start-Sleep -Seconds 3
@@ -64,7 +69,7 @@ TotalSeconds      : 2.636239
 TotalMilliseconds : 2636.239
 ```
 
-# Snippet 8 - Test Watch-Folder.ps1 execution times
+# Snippet 9 - Test Watch-Folder.ps1 execution times
 ```powershell
 $Argument = '-File ' +
     '"C:\Scripts\Invoke-LogFileCleanup.ps1"' +

@@ -1,0 +1,554 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" html lang="en">
+<head id="Head1"><meta http-equiv="X-UA-Compatible" content="IE=7" /><link rel="stylesheet" type="text/css" href="Style/catalog.css" /><title>
+	Microsoft Update Catalog
+</title><script type="text/javascript">
+	function supressError(message, url, line)
+	{
+	  var re = /^function\s*([^(]*)\s*\(([^)]*)\)/;
+	  var matches = null;
+	  if (arguments.caller != null) {
+	    matches = re.exec(arguments.caller.callee);
+	  }
+	  var argArray = new Array();
+	  var fName = 'unknown';
+	  if(matches)
+	  {
+	    if(matches[1] && matches[1].toString().length > 0)
+	       fName = matches[1].toString();
+	    if(matches[2] && matches[2].toString().length > 0)
+	    {
+	       var cleanMatches = new String(matches[2]).replace(/\s*/g,'');
+	       argArray = cleanMatches.split(',');
+	    }
+	  }
+	  var args = (argArray.length>0)?'':'none';
+	  for(var i=0; i<argArray.length; i++)
+	  {
+	    args += ((args=='')?'':', ') + argArray[i] + '(' + typeof(arguments.caller[i]) + '):';
+	    args += arguments.caller[i];
+	  }
+	  if(typeof(logger) != typeof(undefined) && logger != null)
+	    logger.log(logger.logLevelFatal, 'JavaScript Error: MESSAGE='+ message + '. URL=' + url + '. LINE='+ line + '. FUNCTION_NAME=' + fName +'. ARGUMENTS=' + args);
+	  var location = window.location.href.toLowerCase();
+	  if(location.indexOf('ErrorInline.aspx'.toLowerCase()) == -1)
+	    window.location.href = 'ErrorInline.aspx'  + '?id=' + Microsoft.UpdateServices.Catalog.Constants.ErrorScriptError;
+	  return true;
+	}
+	window.onerror = supressError;
+</script></head>
+<body class="mainBody" id="ltr">
+    <form method="post" action="./ScopedViewInline.aspx?updateid=250bfd45-b92c-49af-b604-dbdfd15061e6" id="scopedViewInline">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="IQECqKeiE4dOTFT/uHQRA1eFRd0eViPr/79jXZnpFENKTdFQYpcRs5vdTKrwpf5Li7XlL1ttulH1wGM6pd9qeMSka8WE4D+M3GYEJ/+IEun+IlXcrgt+LRE3t/EfD1CFefbQL6S5BPxfSJO9VBDaVsTxglUgdzeBB4qosGpFthwslO/5PwNGBn5AfClQKN/Ge/jBro28xTt2BFMPlIcvViOLuoSgyAjUPiaLrZOmM+Txz4arda02Uwi2Me1+BbL6RPqmvkSyv3Fh//usXgjUvJt5MmnaC8OcGrrjWw0/b00/uCrYUDsUYjITh1MbdXNXbNfMyOSquET9CRTIAplLN9q39e1cDYSK9w3bPw0p8e+77/AV5OUneE7tptgpIpPjF7VXQ1dKeIGa8eML/gKgAPzBcsE/1wDqgQcRnYrNalFS4waFD0dQxpoF0un1mFJkqCJi86PikOaT/Oozzn6EGK8H3RLfb5FkWoBEvRWl1+WRm0Tfz3BdafdrrtaGMTNwYyQndrIYFFRWibyhg/1zLYhCQnMjk0r4ghb40a4i7o+C2VidysoGak2CRdeCcN0Zm6L6D2Iyp5jKInh49eLmUY9JlaVf2sy8rYIPIMADP1sL4iSai5zAKiPpoDhuziDEA3ZSF9nH9QqwB56bt3lfoHm+TCW18LE0LD2P3MIuNOUW1P5i6yM7jxxt9l8lLBT0MvxkOBikUh/laOwJIcIMKh4yOAtvFeFMFZrcZ43lgbdZCMJTEIu5+3d4w7A2i5OqMneTHvLg15MwA2urWe8+nUWMD9TqbeEsxCx8ryg0n+fcshBqnbZasOaO1vhoRDlpJJRkMjY6w9GuYGNZXfIJVxlkbmmHeXPB3ve3lGb4nrTNNHK/srIIUXns88zUL70acdQotFz03+dMEM+ni17oKHZg6rlNwJqdXofBI6ARUT6dcOBZo0o85KcmYG+p1LYcrObyMXJToRJlpZkwcBUS/AxU0pUf5c38JroqQiAAm/Gn1eyfZPf7J5dw4RQlLuBhKSHERAbg5nm3PwnNqEnAWcCBf1b4Z2r78kIPl6qVjxyBodCxXNXNXYAzif3DXwDSIAYZ0QCFcP73OVF5pEdvi/VQQ7TuGloK8il+4AMafyvSzySmp+pYbrrFFLZrVuD96fyMa1GRI4wrSZPbUHLe4NDdP1QX5M053GY8oET1he9ew0BM+Ban1ckdhbi9jrABM8jdYxrYB5abocSaHqRUFSy5xN2qWlaP6mEzYrNHWbq2s+Q8pgLG0Fz4M7i2L2KPPavSchO6ZlYueycG2CrFXDMWKAVu/8AW5Wg6gvQmRqTQSpS8YDSwLd6fXjE50JEkLnIjNtru18EG7cWxwJfMC1oE8VOpixzldfQQSV23hX2b5UQKozuiNxym+nf+C5SXGLMGGyXtSzF9heyfi+/XyLurKPoIwyw0xHrDpjXfRzQcEnjeUmk904vq0RWL7x/3cX6UWORZT2+Xul6FiGbA2lQEglF9spd+xASqcvWOnFk0zHzhSptrVT/GmHXB0d7zL+3Cveo+LIEMHjwg/lNb5iJcqzZEXpCgu9tD+RoY7mD0kTJpXhHOn/io9b5uQ707G3/39qii0wQpQrpdwMezTxBkYJ9ZnhlTANk9lAxUi3zzloVzR6z19Ezww2RO5VloeBPxM7V6ZEjGAjog6wspska1/638QSXru7EeumsOBJ+lW28uAzvNIME2kNfip1f4PBpy4rsA0xrQrS5bI/I/E8QAK6yX+gxjYWZPilkPwdsoyeq6gg1TuugEhNI0aXPQzsP83zZKUCWmAPBkE5YnDkbW8iZ2AhbdetwlDeFHgC46xPwo2cJvUcikKsSm1ePHDzvlDpVgAQMRrtHEE4PCC0uj8RybHUnTvV2JIVbyvkM0XbYpFzIQVRH6Ee9VTH8x5zjDoONiq/ZeuEGmxaWLUPEtlCgrtpAPORcqz4ta50mZ1BBOSIav8ivcWGAukf7+E9/PElPexI6OWMA4YtcDIie8x2NnjbCLJNwsu+0YzcUxY1DH/LlFPEDbzD4BO/6EQxrm4UY3E00EXlK9P5Eahp358RLePD8X2yxg7BZILO+mva1YI0ktAe0BsEmv51OyR2ZGW8hTIkLjudRZwOcZlRYTVz0InbmLbJQ/7/hpcteyQSp5jzD5NNsw5ONhjLRa5A1teZ2U9kFTw0BioAxw6uMG8P79mAPEzOr+2zSYGOAtpNbcIdy1vO6+DIkqP8ayUjwPJ3EZpePCyL3wmKsYHGmyptRUp+LNnQey2kcj+IXpxu2iHEh+vmUqWef9PejR0Qwk3S8WTW3QnJprIlUMzcEGBCqUcz8AUSfCj0eBaRTvmfVho2RyTzPCFJ+c9d7EaDz/KGKDzj/UIEg11PrLhd1iEVtyG/pR7sHaeGcka4j0nh49r1uzrJV93goLJh8wlkyLBS3aKw7q2sIioMgNgaHjjW8iJAwGaT68tg2OOap4LUc08aYd9wMd8VHd2NWf4RaTwv+8pEmZT/RIy0QI3iu75fLKc4opC+HPciEf6/W8zA9X+FcxQDizn7zibqj90FjhvqC0QaVlhjYaXwotWgLXWgh41IraA2nL8WAMA4g1iMf5O8khIEw9iAmBwHAbb3yqqNwohIMVnbcvjGkF/TtORGYNZMknWm2ggRNfsBBOiNm/lj/Cnt7TsAf/vACgbqvL0S/pHQisyuHWexn2guX6SwMnzUr4sRqAaehtPa0jATdDgZ0xQernqsnqO/QWxJ2qTxIKGOPVAckjQydkGe+GqYJ1UGZkOKmOKis0Uykhhpzv4IkmcCqZ+IQDR+x2Tp+cwdu0SfYjqq4HTRO14RH5Ekt70cknBDL7sYRgD+rKKPtMqBHpvdX8qHvyb036T0j5PEID1h9H/jDo8dx48ppNvWiOvFC/RAYMgC3uPIIKmRH+JJg42IIMSjl2kaNMPfWQjWReo0h5MECZDfUOBpcmv1rWE2QEX29txNf/72+ZQbYWbdT2nvB3ythQ6DZmeJQ3kcLtwmdO/BNAVP+2CXIY1M+MI8qhrRQBQZIzqrHW4dZP6V56TW/4OaTqgIJPJDzC1iq5ui9aNV7bhiQt0wvdCLTNb5S0N5mFCKLtapQIBTpPgtL5FBRoVPzr1n8Qi+mzLgMoHNLTgXe8wuvbdFycTU/Z2MM4d3hOPwxpnw0MRVnL9hzdVzBG/UXQL0ErOatDtJt67UHk+iDcxT8yx0Ty4O9gMUwEMmd/vaDwvkRGc0IvrUhHFfin4lU8DCftouE1avewRggv35c9Rq+xZ/85vW090eT6B1e0Cn/6npaMzZqVkwod3/xEx3eEbu4DtQ9s/1glL6qUyGh2mSY/6bmvxkLIGUZane+5iKYnthcsOhxHvzWsZ4CH7dyXsibw8/R2PKT0LAvfzcycdOjIEz+PwtaxRCxmX2LahciYJHvhsmoMqUCIlcachYHtkqEAFXTYAs8rSK5rEa9Kvulfouz+VTtxBZ9WpEb+XSS27sHKpfKMzX4YeBQlfzJB2wkUulCN7KNhe6Zc6BprThbTe6wFkA7uKINi9PHNkW6wqDjezIzMQjBcHB9Am8FGvBZW4ZI0nDGLB82EFpnllmeEdKNLuQ7cEaD4Cv6FVLTrh1+u4U4V8Kk3ceRSpyGOob2GkACF9WoT8itFw1wJeHrZFGpIK7iIMhL4HTway9+5Orn7ZIeMwjNnWQvBr3lCm8Eu5DFpgEBoS3Awc5mdBhEIKwupeS2iPvp/DXR0PHF4FPTLZbPBAQxhZk/feWY66mEDMYGtsWN5d+Y//Mvv9g06fbhezal1iFLwoRwIBI04i7ik6og/T7mWDwtfK9/OrKYmqlxDUhrkfElrQ6WLnZfPI1osPYZHV2JWrtUheaDlK2SDJmzfKlm65FR5ZmSJi2LuCyoGnpzvjBmqOXq3aDJBBDE5dCClw3W+q1nAkXaWWF+tS6UGXrWTmuBIZHtdANzdx3o3QzV3PSwi3kn5QA979pz2tPejJh70/4viIzt30YCT4SOTOuWX5RVWQqn44gqJ7cRrXbmnByioknwBWMoIZ7Pm7w8KP8DnC21Q6YkT9i+RMfidHlngoDMKR6gtugs2o9KEe3gCDrDd+yX4QdTo+HrcuxQBbyww6Ln15jLcl9Vrx656HhjHStOyd/Dvmj1x3bB98UU+f9FVAvuu0IkbPl4FEzuQXihfbgiyBtAbxi6PwEzn/BRawU7ApPyxMffzusVMgbiJ+tmy1VSyH7kAfy1eWClEKspuBalv/PgoJlpD5wMPOG3T+7qyDmghCKFSNKReaoMtGnrtkPGrmmaOnCbFXtMhsbdD0gXqbt+lknzFg4nhjrPxHRdEAiUpoN/s7D/mV4k8nRVAg8wU3EaTcnaeWEYpdjEog3sjIs8hAoks+Hj5V+BMmC+SuabVEKrl3dz/CuO13XJkEnpzx7XAsbpP2M2FrDnwEpVmVSoBiFzZCQW86R4SCiL+ebVt82ulh6QwGnFes23/4NR+nn6p/qsG65jrGMj3f43FGodUaJdLRz5cRWDIRrwpQVKRZcgIbymNgCO3nVDerMHeMCx5mlJyz/s40ap7omSPgd1lPK53hitxjplSU23RdTSr8lhWT0+x2TIyCb4JcKih/s7yYWb8zCJkwKnmfgjvMezFCCrk7uv+TXtYjEvpXV3YKZKjXk+ZTBx418xSTyO8Ru/xFFC2YXKBNW+mBzcxs5Li8Duxi1XxFVeIWYGg3368ne0Q+/Syd/3n7tnISs/3ioA4p73Rz95onsaezVCxr7FIlnZEhTMCLU/wrRczkEnd+SO3l0Kc7J0b/BCY3XJ6doLYGpkimT5Ledeie+DBQRXKfBB/0YlV199J8KopjcQh50nl8ZpIDC9XDslre52CvAAQyzEF/Psvvo35Gvun4mhumiQlbxNCD9kzVU9KWhB+G00iVaGThMJjbtRkBMZ+G/n0elutSPZgtIgtP65PdF/r26r6BF7yQqLGV8cN9cSMyzSt/0QgWa9RVYr2XVGu+PziH77ZOorQYurgBT2ILkVZozf2J4TRdRzJbrMLDeYXd2kqqwZ5GqrFI3RRzaQ2HSogYN0pPt0AwFoJA+zj4USbpkg0J+Drkfvi7aNhACRUwEHQweRtbpEuZEbfi4XpspBN2lvAEx2S5WCXDFTDrxOUxkQw5LiV3b3ZxTRAm9aOXF9Y+B9Li8ctCeaHY+k78M+LLT4H86I3YIgXrrIu/RxtOU+JlQtKlrAiPLahFHiZjCNPnmlQYVuJJIVVawCsHMXyyCajqoeNMdjjgnMe1/vMd4tKgudR3b/ugT+izMaiPryx8Qm1KMqjtmFf79LJ6y3KS8DiV/zLb3CT02U0yK6v7tB4dw2M3w9HAJmN0bstJiztVuQqkXUEKVMgnhQnyUq1ybs6QokY0b5H0zJV68Dc4el7U4BsS9hf32WFntlgNgte7DTfS0ltXIUa6oegeggup/9BXsAwHDrTp07tqFxB7OPsDCuu3bIVPbNr7k0KTK0eMQEweOgbFfL+lzPvYG2Im+FxeOKl3Y0XAbGx5/3pTmJUlTyUrYjFrS1U0WfsSGEb0FvgBVq36iVSsgcLdxn41CUcSGXJZLHGCYe3zZ8fVOs=" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['scopedViewInline'];
+if (!theForm) {
+    theForm = document.scopedViewInline;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZHxxdeJUrNoPJt6lxqvRW6Pzs10y1yT0YV6OgZaeZ6xoRcBn9JsAyiMny6iPkJnw0A2&amp;t=637820484539633039" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=NJmAwtEo3Ipnlaxl6CMhvrkdqm_yxvjqkpYsU8np-a1hZKqNHieny7c8n0uFLH4lzuKZ2_3k4RIn1u-oD0Hipvv6bGQQXy6aHGv0t5q6qO1D0p3K1XQnZtU9otznsIz2SPmyOXUpjM0fXDhvEXkcl622PtyhpuYTTG0Cu-XpPYo1&amp;t=ffffffff8333b97c" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=dwY9oWetJoJoVpgL6Zq8OOJ-LUvz3VxVAyp7Uzq5cGa7mkDN5Xh77gOyzVbjX9jsT4Xw3w4ZL5jejcL2YFsfttusLZ_-e8blE9iv6Ud8tM0VJQL6zbNjC-bnxcSPwzKLzZ5_L4Rh4XRf_if0fcOmIyTPM9R7X2Pu2Q--VBmrvPM1&amp;t=ffffffff8333b97c" type="text/javascript"></script>
+<script src="SiteConstants.aspx?6" type="text/javascript"></script>
+<script src="Script/CommonTypes.js?6" type="text/javascript"></script>
+<script src="Script/DownloadBasket.js?6" type="text/javascript"></script>
+<script src="Script/MasterComponents.js?6" type="text/javascript"></script>
+<script src="Script/ScopedView.js?6" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="015E8938" />
+</div>
+        <script type="text/javascript" language="javascript">
+        function pageLoad()
+        {           
+            pageLoadHelper("true");
+        }
+        </script>
+
+        <div class="inlinePadding">
+            <div id="scopedViewHeaderTitleBox" class="dialogHeader">
+                <span id="scopedViewHeaderTitleResource">Update Details</span>
+            </div>
+            
+ <div id="contentSection">
+       <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ScopedViewHandler$scriptManager', 'scopedViewInline', [], [], [], 90, '');
+//]]>
+</script>
+
+    
+    <script type="text/javascript" language="javascript">
+        var scopedViewComponent;
+        var binarySize = new Array();
+binarySize[0] = new Object();
+binarySize[0].shortLanguage ='all';
+binarySize[0].binaries = new Array();
+binarySize[0].binaries[0] = new Object();
+binarySize[0].binaries[0].updateID = '5b8e07c1-648d-4371-84dd-77aa202c9f3a';
+binarySize[0].binaries[0].size = 5631250;
+
+        ///<summary>
+        ///     This function is called automatically by ASP.NET AJAX framework when the page finishes loading
+        ///</summary>
+        function pageLoadHelper(details)
+        {           
+           var downloadButton = $get('downloadButton'); 
+           var uId = '250bfd45-b92c-49af-b604-dbdfd15061e6';
+           var addToBasketLabel = 'Add to Basket';
+           var removeFromBasketLabel = 'Remove from Basket';
+           var sizeContainer = $get('ScopedViewHandler$size'.replace(/\$/g, '_'));
+           var updateBasketLabel = 'Update Basket';           
+           if(details != "true")
+           {
+                // Get the MasterPageContext object
+                var masterPageContext = createMasterPageComponents(true);
+                if(masterPageContext == null)
+                {
+                    return;
+                }
+                
+                if(typeof(downloadButton) != typeof(Microsoft.UpdateServices.Catalog.Constants.UndefinedValue)
+                    && downloadButton != null)
+                {
+                    downloadButton.value = 'Download Now';
+                    $addHandler(downloadButton, "click", function () { 
+                        //pass in the updateid, size and languages info as language info is needed to know what binaries to downlaod and 
+                        //language info and size info is needed to add the update back to basket if the update is failed or cancled in download process
+                        var updateIDLang = uId 
+                        //if all the check box is present then the language selection is present
+                        var allCheckbox = $get('allLan')    
+                        if(typeof(allCheckbox) != typeof(Microsoft.UpdateServices.Catalog.Constants.UndefinedValue) && allCheckbox != null)
+                        {
+                            updateIDLang += Microsoft.UpdateServices.Catalog.Constants.UpdateInfoSeparator+  scopedViewComponent.getTotalSize() +  scopedViewComponent.getLangSelected(); 
+                        }
+                        //serialize the update selection so on the server this can be de-serialized uing Jason
+                        var serializedUpdateInfo = Sys.Serialization.JavaScriptSerializer.serialize([new Microsoft.UpdateServices.Catalog.Update(updateIDLang)]);
+                        masterPageContext.get_basketForm().updateIDs.value = serializedUpdateInfo;
+                            
+                        var qs = new Microsoft.UpdateServices.Catalog.QueryString(window.location.search);
+                        var downloadDialog = window.open(Microsoft.UpdateServices.Catalog.Constants.PageDownloadDialog + qs.appendErrorsQS("?scopedview=true"),
+                                                Microsoft.UpdateServices.Catalog.Constants.EmptyString,
+                                                'height=460,width=640,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=1 ');
+                        if(downloadDialog == null)
+                        {
+                            popupInfo.style.display = "block";
+                        }
+                    });
+                    downloadButton.style.display = "inline";           
+                }
+           }
+           //get all the language elements and attach event to them and build an array to pass to js
+            var inputElments = languageBox.getElementsByTagName("input");
+            var languageCheckboxes = new Array();            
+            for(i=0; i<inputElments.length; i++ )
+            {
+                if(inputElments[i].type == "checkbox" && inputElments[i].id != "allLan")
+                { 
+                    languageCheckboxes.push(inputElments[i]);              
+                    attachEventToCheckbox(inputElments[i]); 
+                }
+            }
+            //add event handler to all language checkbox  
+            var allCheckbox = $get('allLan')
+            if (typeof(allCheckbox) != typeof(Microsoft.UpdateServices.Catalog.Constants.UndefinedValue) && allCheckbox != null) {
+                $addHandler(allCheckbox, "click", function () { scopedViewComponent.allLanguageSelected(); }); 
+            }
+
+            scopedViewComponent = new Microsoft.UpdateServices.Catalog.UI.ScopedView(
+                                            $get('contentSection'), 
+                                            uId, 
+                                            addToBasketLabel, 
+                                            removeFromBasketLabel,
+                                            $get('overView'),
+                                            $get('overviewBox'),
+                                            $get('packageDetails'),
+                                            $get('packageBox'),
+                                            $get('installDetails'),
+                                            $get('installBox'),
+                                            $get('languageSelection'),
+                                            $get('languageBox'),
+                                            languageCheckboxes,
+                                            "en",
+                                            sizeContainer,
+                                            updateBasketLabel,
+                                            allCheckbox,
+                                            downloadButton,
+                                            binarySize //array of binary size per locale
+                                            );       
+
+            $addHandler($get('overView'), 'keydown', TextBox_OnKeyDownOverview);
+            $addHandler($get('languageSelection'), 'keydown', TextBox_OnKeyDownLanguage);
+            $addHandler($get('packageDetails'), 'keydown', TextBox_OnKeyDownPackage);
+            $addHandler($get('installDetails'), 'keydown', TextBox_OnKeyDownDetails);
+
+            $get('overView').setAttribute("aria-selected", "true");
+            $get('languageSelection').setAttribute("aria-selected", "false");
+            $get('installDetails').setAttribute("aria-selected", "false");
+            $get('packageDetails').setAttribute("aria-selected", "false");
+
+            $addHandler(overView, "click", function () { scopedViewComponent.switchTab(1); });
+            $addHandler(packageDetails, "click", function () { scopedViewComponent.switchTab(2); });
+            $addHandler(installDetails, "click", function () { scopedViewComponent.switchTab(3); });
+            $addHandler(languageSelection, "click", function () { scopedViewComponent.switchTab(4); });
+            $addHandler(window, "focus", function () { 
+                if (typeof(scopedViewComponent) != typeof(Microsoft.UpdateServices.Catalog.Constants.UndefinedValue)) {
+                    scopedViewComponent.updateLabels("true");
+                }
+            });
+        }
+        
+        function attachEventToCheckbox(languageCheckbox) {
+            $addHandler(languageCheckbox, "click", function () { scopedViewComponent.manageBasketButton(); });
+        }
+
+
+        function TextBox_OnKeyDownOverview(e)
+        {
+            if (e.keyCode == 39)
+            {
+                $get('languageSelection').focus();
+            }
+        }
+
+        function TextBox_OnKeyDownLanguage(e)
+        {
+            if (e.keyCode == 39)
+            {
+                $get('packageDetails').focus();
+            }
+
+            if (e.keyCode == 37)
+            {
+                $get('overView').focus();
+
+            }
+        }
+
+        function TextBox_OnKeyDownPackage(e)
+        {
+            if (e.keyCode == 39)
+            {
+                $get('installDetails').focus();
+            }
+
+            if (e.keyCode == 37)
+            {
+                $get('languageSelection').focus();
+            }
+        }
+
+        function TextBox_OnKeyDownDetails(e)
+        {
+            if (e.keyCode == 37)
+            {
+                $get('packageDetails').focus();
+            }
+        }
+
+        
+
+    </script>
+    <div class="textBottomSpacer labelTitle" id="titleDiv">
+        <span id="ScopedViewHandler_titleText">2019-10 Servicing Stack Update for Windows 10 Version 1607 for x86-based Systems (KB4521858)</span>
+    </div>
+    <div id="dateDiv" class="textBottomSpacer">
+        <span id="ScopedViewHandler_labelLastModified_Separator" class="labelTitle">Last Modified:</span>
+        <span id="ScopedViewHandler_date">10/8/2019</span>
+    </div>
+    <div id="sizeDiv" class="textBottomSpacer">
+        <span class="labelTitle">Size:</span>
+        <span id="ScopedViewHandler_size">5.4 MB</span>
+    </div>
+    <div id="buttonsDiv">
+        <input id="downloadButton" class="flatBlueButton buttonPadding" type="button" style="display: none;" />
+    </div>
+</div>
+<div id="popupInfo" class="poupInfoDiv">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <tr>
+            <td valign="top">
+                <img src="Images/decor_BigInformation.gif" />
+            </td>
+            <td class="poupInfoText">
+                <span id="ScopedViewHandler_textPopupBlocked">If you have a pop-up blocker enabled, the Download window might not open. To open the Download window, configure your pop-blocker to allow pop-ups for this Web site.</span>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="tabSection" role="tablist">
+    <div class="textLeftPadding textTopPadding">
+        <span id="ScopedViewHandler_labelDetails_Separator">Details:</span>
+    </div>
+    <div id="tabContainer">
+        <a href="#Overview" id="overView" aria-selected="false" role="tab" class="tab tabActive" tabindex="1" ><span id="ScopedViewHandler_labelOverview">Overview</span></a>
+        <a href="#LanguageSelection"  id="languageSelection"  aria-selected="false" role="tab" class="tab tabInactive" tabindex="11"><span id="ScopedViewHandler_labelLangSelection">Language Selection</span></a>
+        <a href="#PackageDetails"  id="packageDetails"  aria-selected="false" role="tab" class="tab tabInactive" tabindex="21"><span id="ScopedViewHandler_labelPkgDetails">Package Details</span></a>
+        <a href="#InstallDetails"  id="installDetails"   aria-selected="false" role="tab" class="tab tabInactive" tabindex="31"><span id="ScopedViewHandler_labelInstallDetails">Install Resources</span></a>        
+    </div>
+</div>
+<div id="tabBody">
+    <div id="overviewBox">
+        <div id="overviewContentBody" class="tabBodyContentBox">
+            <table cellpadding="0" cellspacing="0" border="0" width="95%">
+                <tr>
+                    <td id="overviewLeftBox">
+                        <div id="descDiv" class="textDoubleSpacer">
+                            <span id="ScopedViewHandler_labelDescription_Separator" class="labelTitle">Description:</span>
+                            <span id="ScopedViewHandler_desc">Install this update to resolve issues in Windows. For a complete listing of the issues that are included in this update, see the associated Microsoft Knowledge Base article for more information. After you install this item, you may have to restart your computer.</span>
+                        </div>
+                        
+                        <div id="archDiv">
+                            <span id="ScopedViewHandler_labelArchitecture_Separator" class="labelTitle">Architecture:</span>
+                            
+                                    X86
+                                
+                        </div>
+                        <div id="classificationDiv">
+                            <span id="ScopedViewHandler_labelClassification_Separator" class="labelTitle">Classification:</span>
+                            
+                                    Security Updates
+                                
+                        </div>                        
+                        <div id="productsDiv">
+                            <span id="ScopedViewHandler_labelSupportedProducts_Separator" class="labelTitle">Supported products:</span>
+                            
+                                    Windows 10
+                                , 
+                                    Windows 10 LTSB
+                                
+                        </div>
+                        <div id="languagesDiv">
+                            <span id="ScopedViewHandler_labelSupportedLanguages_Separator" class="labelTitle">Supported languages:</span>
+                            
+                                    all
+                                
+                        </div>
+                    </td>
+                    <td id="overviewRightBox">
+                        <div id="ScopedViewHandler_SoftwareInfo">
+                            <div id="securityBullitenDiv">
+                                <span id="ScopedViewHandler_labelSecurityBulliten_Separator" class="labelTitle">MSRC Number:</span>
+                                n/a
+                            </div>
+                            <div id="msrcSeverityDiv">
+                                <span id="ScopedViewHandler_labelMSRCSeverity_Separator" class="labelTitle">MSRC severity:</span>
+                                <span id="ScopedViewHandler_msrcSeverity">Critical</span>
+                            </div>
+                            <div id="kbDiv" class="textDoubleSpacer">
+                                <span id="ScopedViewHandler_labelKBArticle_Separator" class="labelTitle">KB article numbers:</span>
+                                
+                                        4521858
+                                    
+                            </div>
+                        </div>
+                        
+                        <div id="moreInfoDiv" class="textDoubleSpacer">
+                            <span id="ScopedViewHandler_labelMoreInfo_Separator" class="labelTitle">More information:</span>
+                            
+                                    <div>
+                                        <a target="catalogNew" tabindex="2" href="https://support.microsoft.com/help/4521858" class ="contentTextItemSpacerNoBreakLink">
+                                            https://support.microsoft.com/help/4521858
+                                        </a>
+                                    </div>
+                                
+                        </div>
+                        <div id="suportUrlDiv" class="textDoubleSpacer">
+                            <span id="ScopedViewHandler_labelSupportUrl_Separator" class="labelTitle">Support Url:</span>
+                            
+                                    <div>
+                                        <a target="catalogNew" tabindex="3" href="https://support.microsoft.com/help/4521858" class = "contentTextItemSpacerNoBreakLink">
+                                            https://support.microsoft.com/help/4521858
+                                        </a>
+                                    </div>
+                                
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="packageBox" style="display: none">
+        <div id="ScopedViewHandler_softwarePackage">           
+            <div class="tabBodyContentBox tabBodyContentBox">
+                <span id="ScopedViewHandler_labelSupersedingUpdates_Separator" class="labelTitle">This update has been replaced by the following updates:</span>
+                    
+                <div id="supersededbyInfo">
+                    
+                            <div style="padding-bottom: 0.3em;">
+                                <a href='ScopedViewInline.aspx?updateid=447b628f-b2dd-4caf-bae1-6133e780b10b'>2019-11 Servicing Stack Update for Windows 10 Version 1607 for x86-based Systems (KB4520724)</a>
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                <a href='ScopedViewInline.aspx?updateid=3974a7ca-b44c-41c0-aad2-2dc26df6e040'>2020-03 Servicing Stack Update for Windows 10 Version 1607 for x86-based Systems (KB4540723)</a>
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                <a href='ScopedViewInline.aspx?updateid=f72420c7-11c2-47c5-9302-b889cdfe1d9b'>2020-04 Servicing Stack Update for Windows 10 Version 1607 for x86-based Systems (KB4550994)</a>
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                <a href='ScopedViewInline.aspx?updateid=3a5f48ad-f114-4598-9f06-84ffb75144ae'>2020-06 Servicing Stack Update for Windows 10 Version 1607 for x86-based Systems (KB4562561)</a>
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                <a href='ScopedViewInline.aspx?updateid=6c6eeeea-86af-458a-b293-b374d94035d8'>2020-07 Servicing Stack Update for Windows 10 Version 1607 for x86-based Systems (KB4565912)</a>
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                <a href='ScopedViewInline.aspx?updateid=ef131c9c-e3fc-4d41-9602-2ee1527216d2'>2021-02 Servicing Stack Update for Windows 10 Version 1607 for x86-based Systems (KB5001078)</a>
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                <a href='ScopedViewInline.aspx?updateid=6ab99962-6e34-4a47-b840-96e116d16522'>2021-04 Servicing Stack Update for Windows 10 Version 1607 for x86-based Systems (KB5001402)</a>
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                <a href='ScopedViewInline.aspx?updateid=c0399f37-040c-4461-b8b3-5afb3e2187b0'>2021-09 Servicing Stack Update for Windows 10 Version 1607 for x86-based Systems (KB5005698)</a>
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                <a href='ScopedViewInline.aspx?updateid=c8388301-a7bb-47ca-a829-7b8089d7db53'>2022-03 Servicing Stack Update for Windows 10 Version 1607 for x86-based Systems (KB5011570)</a>
+                            </div>
+                        
+                </div>
+                <span id="ScopedViewHandler_labelSupersededUpdates_Separator" class="labelTitle">This update replaces the following updates:</span>
+                <div id="supersedesInfo">
+                    
+                            <div style="padding-bottom: 0.3em;">
+                                2017-06 Update for Windows 10 Version 1607 for x86-based Systems (KB4023834)
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                2017-08 Update for Windows 10 Version 1607 for x86-based Systems (KB4035631)
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                2017-11 Update for Windows 10 Version 1607 for x86-based Systems (KB4049065)
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                2018-03 Update for Windows 10 Version 1607 for x86-based Systems (KB4089510)
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                2018-04 Update for Windows 10 Version 1607 for x86-based Systems (KB4093137)
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                2018-05 Update for Windows 10 Version 1607 for x86-based Systems (KB4132216)
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                2018-11 Update for Windows 10 Version 1607 for x86-based Systems (KB4465659)
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                2019-02 Servicing Stack Update for Windows 10 Version 1607 for x86-based Systems (KB4485447)
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                2019-05 Servicing Stack Update for Windows 10 Version 1607 for x86-based Systems (KB4498947)
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                2019-06 Servicing Stack Update for Windows 10 Version 1607 for x86-based Systems (KB4503537)
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                2019-07 Servicing Stack Update for Windows 10 Version 1607 for x86-based Systems (KB4509091)
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                2019-09 Servicing Stack Update for Windows 10 Version 1607 for x86-based Systems (KB4512574)
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                Update for Windows 10 Version 1607 (KB3211320)
+                            </div>
+                        
+                            <div style="padding-bottom: 0.3em;">
+                                Update for Windows 10 Version 1607 (KB4013418)
+                            </div>
+                        
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div id="languageBox" style="display: none">
+        <div id="ScopedViewHandler_Div2">
+            <div id ="languageContentBody" class="tabBodyContentBox boxTitleContainer">
+                
+                <span id="ScopedViewHandler_OneLanguage" style="display:block;">There are no additional languages to select</span>
+            </div>
+        </div>
+    </div>
+    <div id="installBox" style="display: none">       
+        <div class="tabBodyContentBox" TABINDEX="1">
+            <div id="rebootBehaviorDiv">
+                <span id="ScopedViewHandler_labelRebooBehavior_Separator" class="labelTitle">Restart behavior:</span>
+                <span id="ScopedViewHandler_rebootBehavior">Never restarts</span>
+            </div>
+            <div id="userInputDiv">
+                <span id="ScopedViewHandler_labelRequiresInput_Separator" class="labelTitle">May request user input:</span>
+                <span id="ScopedViewHandler_userInput">No</span>
+            </div>
+            <div id="installationImpactDiv">
+                <span id="ScopedViewHandler_labelInstallationImpact_Separator" class="labelTitle">Must be installed exclusively:</span>
+                <span id="ScopedViewHandler_installationImpact">Yes</span>
+            </div>
+            <div id="connectivityDiv">
+                <span id="ScopedViewHandler_labelInstallRequiresConnectivity_Separator" class="labelTitle">Requires network connectivity:</span>
+                <span id="ScopedViewHandler_connectivity">No</span>
+            </div>            
+            <div id="uninstallNotesDiv">                
+                <span id="ScopedViewHandler_labelUninstallNotes_Separator" class="labelTitle">Uninstall Notes:</span>
+                
+                        <div>
+                            Not Uninstallable
+                        </div>
+                    
+            </div>
+             <div id="uninstallStepsDiv">                
+                <span id="ScopedViewHandler_labelUninstallSteps_Separator" class="labelTitle">Uninstall Steps:</span>
+                n/a
+            </div>
+        </div>
+    </div>
+</div>
+<span id="addToBasketButtonText" class="notVisible">
+    Add to Basket
+</span><span id="removeFromBasketButtonText" class="notVisible">
+    Remove from Basket
+ </span><span id="updateBasketButtonText" class="notVisible">
+    Update Basket
+</span>
+            <div class="inlineCloseButtonCenter textAlignCenter">
+                <a href="#Close" id="close" onclick="window.close()" class="flatBlueButtonClose flatBlueButtonGeneric" ><span id="labelOverview">Close</span></a>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

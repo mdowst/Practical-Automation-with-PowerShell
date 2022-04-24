@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="10" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2022-04-10" time="10:35:15">
+  <environment nunit-version="2.5.8.0" machine-name="DADPC" cwd="D:\Practical Automation with PowerShell\Private\Chapter13\Helper Scripts" clr-version="Unknown" os-version="10.0.22000" platform="Microsoft Windows 11 Enterprise|C:\Windows|\Device\Harddisk1\Partition3" user="mdows" user-domain="DADPC" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="15.6978" asserts="0" description="Pester">
+    <results>
+      <test-suite type="TestFixture" name="D:\Practical Automation with PowerShell\Private\Chapter13\Helper Scripts\Find-KbSupersedence.Integration.Tests.ps1" executed="True" result="Success" success="True" time="7.5364" asserts="0" description="D:\Practical Automation with PowerShell\Private\Chapter13\Helper Scripts\Find-KbSupersedence.Integration.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Find-KbSupersedence" executed="True" result="Success" success="True" time="7.5046" asserts="0" description="Find-KbSupersedence">
+            <results>
+              <test-case description="KB Article is found" name="Find-KbSupersedence.KB Article is found" time="7.5029" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="D:\Practical Automation with PowerShell\Private\Chapter13\Helper Scripts\Find-KbSupersedence.Unit.Tests.ps1" executed="True" result="Success" success="True" time="0.1047" asserts="0" description="D:\Practical Automation with PowerShell\Private\Chapter13\Helper Scripts\Find-KbSupersedence.Unit.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Find-KbSupersedence" executed="True" result="Success" success="True" time="0.0774" asserts="0" description="Find-KbSupersedence">
+            <results>
+              <test-case description="KB Article is found" name="Find-KbSupersedence.KB Article is found" time="0.0246" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="In Depth Search results" name="Find-KbSupersedence.In Depth Search results" time="0.0291" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="SupersededBy results" name="Find-KbSupersedence.SupersededBy results" time="0.0193" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="D:\Practical Automation with PowerShell\Private\Chapter13\Helper Scripts\Get-HotFixStatus.Unit.Tests.ps1" executed="True" result="Success" success="True" time="0.0601" asserts="0" description="D:\Practical Automation with PowerShell\Private\Chapter13\Helper Scripts\Get-HotFixStatus.Unit.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-HotFixStatus" executed="True" result="Success" success="True" time="0.0297" asserts="0" description="Get-HotFixStatus">
+            <results>
+              <test-suite type="TestFixture" name="Get-HotFixStatus.Hotfix Found" executed="True" result="Success" success="True" time="0.0119" asserts="0" description="Get-HotFixStatus.Hotfix Found">
+                <results>
+                  <test-case description="Hotfix is found on the computer" name="Get-HotFixStatus.Hotfix Found.Hotfix is found on the computer" time="0.0068" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="Get-HotFixStatus.Hotfix Not Found" executed="True" result="Success" success="True" time="0.0195" asserts="0" description="Get-HotFixStatus.Hotfix Not Found">
+                <results>
+                  <test-case description="Hotfix is not found on the computer" name="Get-HotFixStatus.Hotfix Not Found.Hotfix is not found on the computer" time="0.0047" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="Get-HotFixStatus.Not able to connect to the remote machine" executed="True" result="Success" success="True" time="0.0279" asserts="0" description="Get-HotFixStatus.Not able to connect to the remote machine">
+                <results>
+                  <test-case description="Unable to connect" name="Get-HotFixStatus.Not able to connect to the remote machine.Unable to connect" time="0.0055" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="D:\Practical Automation with PowerShell\Private\Chapter13\Helper Scripts\Get-VulnerabilityStatus.Integration.Tests.ps1" executed="True" result="Success" success="True" time="7.9967" asserts="0" description="D:\Practical Automation with PowerShell\Private\Chapter13\Helper Scripts\Get-VulnerabilityStatus.Integration.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Find-KbSupersedence not superseded" executed="True" result="Success" success="True" time="7.9655" asserts="0" description="Find-KbSupersedence not superseded">
+            <results>
+              <test-suite type="TestFixture" name="Find-KbSupersedence not superseded.Patch Found" executed="True" result="Success" success="True" time="0.0078" asserts="0" description="Find-KbSupersedence not superseded.Patch Found">
+                <results>
+                  <test-case description="Patch is found on the computer" name="Find-KbSupersedence not superseded.Patch Found.Patch is found on the computer" time="0.0049" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="Find-KbSupersedence not superseded.Patch Not Found" executed="True" result="Success" success="True" time="4.4463" asserts="0" description="Find-KbSupersedence not superseded.Patch Not Found">
+                <results>
+                  <test-case description="Patch is not found on the computer" name="Find-KbSupersedence not superseded.Patch Not Found.Patch is not found on the computer" time="4.4349" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="Find-KbSupersedence not superseded.Superseding Patch Found" executed="True" result="Success" success="True" time="7.962" asserts="0" description="Find-KbSupersedence not superseded.Superseding Patch Found">
+                <results>
+                  <test-case description="Superseding Patch is found on the computer" name="Find-KbSupersedence not superseded.Superseding Patch Found.Superseding Patch is found on the computer" time="3.5121" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

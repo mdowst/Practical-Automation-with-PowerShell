@@ -91,10 +91,9 @@ Install-Module SecretManagement.KeePass
 
 # Snippet 11 - Register the SmtpKeePass KeePass vault
 ```powershell
-Register-SecretVault -Name 'SmtpKeePass' -ModuleName SecretManagement.KeePass -VaultParameters @{
-```
-```
-    Path = "\\ITShare\Automation\SmtpKeePass.kdbx"
+$ModuleName = 'SecretManagement.KeePass'
+Register-SecretVault -Name 'SmtpKeePass' -ModuleName $ModuleName -VaultParameters @{
+    Path = " \\ITShare\Automation\SmtpKeePass.kdbx"
     UseMasterPassword = $false
     KeyPath= "C:\Users\svcacct\SmtpKeePass.keyx"
 }
