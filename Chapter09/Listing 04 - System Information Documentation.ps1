@@ -182,13 +182,16 @@ $Selection.TypeParagraph()
 # Add the first section header
 Add-WordHeader -Text "System Information"
 # Gather the OS information 
-$OS = Get-CimInstance -Class Win32_OperatingSystem | 
+$class = @{
+    Class = 'Win32_OperatingSystem'
+}
+$OperatingSystem = Get-CimInstance @class | 
     Select-Object Caption, InstallDate, ServicePackMajorVersion, 
     OSArchitecture, BootDevice, BuildNumber, CSName, 
     @{l='Total Memory';e={[math]::Round($_.TotalVisibleMemorySize/1MB)}}
 
 # Write the OS information to a table in Word
-New-WordTableFromObject $OS
+New-WordTableFromObject $OperatingSystem
 
 # Add a sub-header for the disk space
 Add-WordHeader -Text "Disk Space" -Style 2

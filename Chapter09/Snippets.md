@@ -81,7 +81,7 @@ Table Add (Range Range, int NumRows, int NumColumns, Variant DefaultTableBehavio
 
 # Snippet 9 - Get all the auto-fit options
 ```powershell
-[[Microsoft.Office.Interop.Word.WdAutoFitBehavior].GetEnumValues() |
+[Microsoft.Office.Interop.Word.WdAutoFitBehavior].GetEnumValues() |
     Select-Object @{l='Name';e={$_}}, @{l='value';e={$_.value__}}
 ```
 ```
@@ -107,16 +107,16 @@ $Table.Cell(3,2).Range.Text = 'Last Cell'
 
 # Snippet 12 - Get the Windows OS information
 ```powershell
-$OperatingSystem = Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object Caption, InstallDate, ServicePackMajorVersion, OSArchitecture, BootDevice,  BuildNumber, CSName, @{l='Total Memory';e={[math]::Round($OS.TotalVisibleMemorySize/1MB)}}
+$OperatingSystem = Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object Caption, InstallDate, ServicePackMajorVersion, OSArchitecture, BootDevice,  BuildNumber, CSName, @{l='Total Memory';e={[math]::Round($_.TotalVisibleMemorySize/1MB)}}
 ```
 
 # Snippet 13 - Add the OS information to the Word document in a table
 ```powershell
-$OS = Get-CimInstance -Class Win32_OperatingSystem |
+$OperatingSystem = Get-CimInstance -Class Win32_OperatingSystem |
     Select-Object Caption, InstallDate, ServicePackMajorVersion,
     OSArchitecture, BootDevice, BuildNumber, CSName,
     @{l='Total Memory';e={[math]::Round($_.TotalVisibleMemorySize/1MB)}}
-New-WordTableFromObject $OS
+New-WordTableFromObject $OperatingSystem
 ```
 
 # Snippet 14 - Add the disk information to the Word document in a table
@@ -141,24 +141,43 @@ ip
 
 # Snippet 16 - Use a REST API to get location information from the IP address
 ```powershell
-Invoke-RestMethod "https://sys.airtel.lv/ip2country/$($ip.ip)/?full=true"
+$apiKey = "your_API_key"
+$ApiUrl = "https://geo.ipify.org/api/v2/country,city"
+$Body = @{
+    apiKey    = $apiKey
+    ipAddress = $IP.ip
+}
+$geoData = $null
+$geoData = Invoke-RestMethod -Uri $ApiUrl -Body $Body
+$geoData.location
 ```
 ```
-country : US
-city    : Denton
-asn     : AS20115
-lat     : 33.15
-lon     : -97.06
+country    : US
+region     : Illinois
+city       : Chicago
+lat        : 41.94756
+lng        : -87.65650
+postalCode : 60613
+timezone   : -05:00
 ```
 
 # Snippet 17 - Add the REST API information to the Word document
 ```powershell
-$ip = Invoke-RestMethod -Uri 'https://api.ipify.org?format=json'
-$Selection.TypeText("IP Address  : $($ip.ip)")
+$IP = Invoke-RestMethod -Uri 'https://api.ipify.org?format=json'
+$Selection.TypeText("IP Address  : $($IP.ip)")
 $Selection.TypeText([char]11)
-$ipData = Invoke-RestMethod "https://sys.airtel.lv/ip2country/$($ip.ip)/?full=true"
-$Selection.TypeText("IP Location : $($ipData.city), $($ipData.country)")
+
+$apiKey = "your_API_key"
+$ApiUrl = "https://geo.ipify.org/api/v2/country,city"
+$Body = @{
+    apiKey = $apiKey
+    ipAddress = $IP.ip
+}
+$geoData = $null
+$geoData = Invoke-RestMethod -Uri $ApiUrl -Body $Body
+$Selection.TypeText("IP Location : $($geoData.location.city), $($geoData.location.country)")
 $Selection.TypeParagraph()
+
 ```
 
 # Snippet 18 - Start process ping and wait for completion
