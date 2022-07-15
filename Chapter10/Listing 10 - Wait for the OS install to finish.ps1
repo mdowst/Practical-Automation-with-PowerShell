@@ -1,4 +1,5 @@
 ﻿# Listing 10 - Wait for the OS install to finish
+$OsInstallTimeLimit = 30
 # Command to return the VM guest hostname. It will be used to determine that the OS install has been completed.
 $Command = @{
     VMId        = $VM.Id

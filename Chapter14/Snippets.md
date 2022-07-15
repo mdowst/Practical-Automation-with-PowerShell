@@ -26,7 +26,7 @@ Total_Memory            : 32
 
 # Snippet 3 - Export the results of the Get-CimInstance cmdlet
 ```powershell
-Get-CimInstance | Export-Clixml -Path .\Test\Get-CimInstance.Windows.xml
+Get-CimInstance -Class Win32_OperatingSystem | Export-Clixml -Path .\Test\Get-CimInstance.Windows.xml
 ```
 
 # Snippet 4 - Quickly generate text you can use to build test scripts
@@ -85,7 +85,7 @@ UBUNTU_CODENAME=focal
 ```powershell
 $OS = Get-Content -Path /etc/os-release | ConvertFrom-StringData
 $OS.PRETTY_NAME
-$OS.PRETTY_NAME.Replace('"',"")
+$OS.PRETTY_NAME.Replace('"','')
 ```
 ```
 "Ubuntu 20.04.4 LTS"

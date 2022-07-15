@@ -9,7 +9,7 @@ class RegistryTest {
     RegistryTest(
         [object]$object
     ){
-        $this.operator = $object.operator
+        $this.operator = $object.Operator
 		$this.Value = $object.Value
     }
 }

@@ -1,8 +1,9 @@
-﻿# Listing 1 - Get Top N Processes
+﻿# Listing 4 - Get Top N Processes
 # Declare your function
 Function Get-TopProcess{
     # Define the parameters
     param(
+        [Parameter(Mandatory = $true)]
         [int]$TopN
     )
     # Run the command

@@ -153,7 +153,7 @@ $Variable = @{
 New-AzAutomationVariable @AutoAcct @Variable
 
 $Variable = @{
-    Name  = 'ZipStorage_Subscription'
+    Name  = 'ZipStorage_SubscriptionID'
     Value = $SubscriptionID
 }
 New-AzAutomationVariable @AutoAcct @Variable

@@ -4,8 +4,8 @@ $NewIsoPath = 'D:\ISO\Windows_Server_2022_ZeroTouch.iso'
 $ExtractTo = 'D:\Win_ISO'
 $password = 'P@55word'
 
-$Uri = "https://gist.githubusercontent.com/mdowst/3826e74507e0d0188e13b8' +
-  'c1be453cf1/raw/0f018ec04d583b63c8cb98a52ad9f500be4ece75/Autounattend.xml"
+$Uri = 'https://gist.githubusercontent.com/mdowst/3826e74507e0d0188e13b8' +
+  'c1be453cf1/raw/0f018ec04d583b63c8cb98a52ad9f500be4ece75/Autounattend.xml'
 $FileName = 'oscdimg.exe'
 [System.Collections.Generic.List[PSObject]] $SearchFolders = @()
 

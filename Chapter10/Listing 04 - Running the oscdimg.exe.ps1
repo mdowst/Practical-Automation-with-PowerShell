@@ -1,4 +1,5 @@
 # Listing 4 - Running the oscdimg.exe
+$NewIsoPath = 'C:\ISO\WindowsSrv2022_zerotouch.iso'
 $filePath = ".\Chapter10\Helper Scripts\oscdimg.exe"
 # Get the path to the etfsboot.com file
 $Path = @{

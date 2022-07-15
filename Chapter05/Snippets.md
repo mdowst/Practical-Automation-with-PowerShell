@@ -22,6 +22,7 @@ Add-LocalGroupMember -Group "Administrators" -Member "<YourUser>"
 
 # Snippet 4 - Creating presistent connections with try/catch
 ```powershell
+$s = "localhost"
 try{
     $session = New-PSSession -ComputerName $s -ErrorAction Stop
     $Sessions.Add($session)

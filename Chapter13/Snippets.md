@@ -294,7 +294,7 @@ Mock Invoke-WebRequest -MockWith {
 
 # Snippet 26 - Test the detail results
 ```powershell
-KBSearch = Find-KbSupersedence -KbArticle 'KB4521858'
+$KBSearch = Find-KbSupersedence -KbArticle 'KB4521858'
 $KBSearch.Id | Should -Contain '250bfd45-b92c-49af-b604-dbdfd15061e6'
 $KBSearch | Where-Object{ $_.Products -contains 'Windows 10' } | Should -HaveCount 2
 $KBSearch | Where-Object{ $_.Architecture -eq 'AMD64' }  | Should -HaveCount 2

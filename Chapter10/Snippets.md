@@ -2,7 +2,7 @@
 ```xml
 <UserAccounts>
   <AdministratorPassword>
-    <Value>password</Value>
+    <Value>UABAAHMAcwB3ADAAcgBkAEEAZABtAGkAbgAA==</Value>
     <PlainText>false</PlainText>
   </AdministratorPassword>
 </UserAccounts>
@@ -52,7 +52,8 @@ Get-ChildItem -Path $Path | ForEach-Object{
 
 # Snippet 7 - Get the value of a registry entry
 ```powershell
-$DevTools = Get-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows Kits\Installed Roots'
+$Path = 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows Kits\Installed Roots'
+$DevTools = Get-ItemProperty -Path $Path
 $DevTools.KitsRoot10
 ```
 

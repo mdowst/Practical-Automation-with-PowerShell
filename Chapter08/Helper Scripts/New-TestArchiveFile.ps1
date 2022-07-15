@@ -2,6 +2,11 @@
 $Directory = "L:\Logs"
 $ZipPath = "L:\Archives\"
 
+# create the zip path if not found
+if(-not (Test-Path $ZipPath)){
+    New-Item -Path $ZipPath -ItemType Directory
+}
+
 # Create the zip file name and full path
 $ZipName = "LogArchive-$((Get-Date).ToFileTime()).zip"
 $ZipFile = Join-Path $ZipPath $ZipName

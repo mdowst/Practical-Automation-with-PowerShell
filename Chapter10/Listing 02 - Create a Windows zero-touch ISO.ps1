@@ -1,4 +1,5 @@
 # Listing 2 - Create a Windows zero-touch ISO
+$ExtractTo = 'C:\Temp'
 $password = 'P@55word'
 # Delete the bootfix.bin 
 $bootFix = Join-Path $ExtractTo "boot\bootfix.bin"
@@ -20,8 +21,8 @@ $Path = @{
 	ChildPath = "Autounattend.xml"
 }
 $AutounattendXML = Join-Path @Path
-$Uri = "https://gist.githubusercontent.com/mdowst/3826e74507e0d0188e13b8' +
-  'c1be453cf1/raw/0f018ec04d583b63c8cb98a52ad9f500be4ece75/Autounattend.xml"
+$Uri = 'https://gist.githubusercontent.com/mdowst/3826e74507e0d0188e13b8' +
+  'c1be453cf1/raw/0f018ec04d583b63c8cb98a52ad9f500be4ece75/Autounattend.xml'
 Invoke-WebRequest -Uri $Uri -OutFile $AutounattendXML
  
 # load the Autounattend.xml

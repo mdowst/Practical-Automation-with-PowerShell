@@ -1,4 +1,6 @@
 # Listing 1 - Extract the ISO
+$ExtractTo = 'C:\Temp'
+$SourceISOPath = 'C:\ISO\WindowsSrv2022.iso'
 # Check if the folder exists and delete it if it does
 if (test-path $ExtractTo) {
     Remove-Item -Path $ExtractTo -Recurse -Force 

@@ -1,7 +1,7 @@
 # Listing 5 - Find-KbSupersedence.Unit.Test.ps1 Initial
 BeforeAll {
     Set-Location -Path $PSScriptRoot
-    . ".\Find-KbSupersedence.ps1"
+    . ".\Listing 04 - Find-KbSupersedence.ps1"
 }
 
 Describe 'Find-KbSupersedence' {

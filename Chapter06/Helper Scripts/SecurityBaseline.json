@@ -1,0 +1,63 @@
+{
+  "Features": null,
+  "SecurityBaseline": [
+    {
+      "KeyPath": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\LanManServer\\Parameters",
+      "Name": "EnableSecuritySignature",
+      "Type": "DWORD",
+      "Data": "1",
+      "SetValue": "",
+      "Tests": [
+        {
+          "operator": "eq",
+          "Value": "1"
+        }
+      ]
+    },
+    {
+      "KeyPath": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\Security",
+      "Name": "MaxSize",
+      "Type": "DWORD",
+      "Data": "32768",
+      "SetValue": "",
+      "Tests": [
+        {
+          "operator": "ge",
+          "Value": "32768"
+        }
+      ]
+    },
+    {
+      "KeyPath": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\LanManServer\\Parameters",
+      "Name": "AutoDisconnect",
+      "Type": "DWORD",
+      "Data": "1",
+      "SetValue": "",
+      "Tests": [
+        {
+          "operator": "in",
+          "Value": "1..15"
+        }
+      ]
+    },
+    {
+      "KeyPath": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\LanManServer\\Parameters",
+      "Name": "EnableForcedLogoff",
+      "Type": "DWORD",
+      "Data": "1",
+      "SetValue": "",
+      "Tests": [
+        {
+          "operator": "eq",
+          "Value": "1"
+        },
+        {
+          "operator": "eq",
+          "Value": "$null"
+        }
+      ]
+    }
+  ],
+  "Services": "SPOOLER",
+  "FirewallLogSize": 0
+}

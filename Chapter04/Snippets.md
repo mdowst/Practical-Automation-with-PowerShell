@@ -25,6 +25,7 @@ $Credential = Get-Credential
 # Snippet 4 - Create credential by combining two strings
 ```powershell
 $Username = 'Contoso\BGates'
+$Password = 'P@ssword'
 $SecureString = ConvertTo-SecureString $Password -AsPlainText -Force
 $Credential = New-Object System.Management.Automation.PSCredential $Username, $SecureString
 ```

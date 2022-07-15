@@ -1,0 +1,46 @@
+[
+  {
+    "KeyPath": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\LanManServer\\Parameters",
+    "Tests": [
+      {
+        "operator": "eq",
+        "value": "1"
+      }
+    ],
+    "Name": "EnableSecuritySignature"
+  },
+  {
+    "KeyPath": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\Security",
+    "Tests": [
+      {
+        "operator": "ge",
+        "value": "32768"
+      }
+    ],
+    "Name": "MaxSize"
+  },
+  {
+    "KeyPath": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\LanManServer\\Parameters",
+    "Tests": [
+      {
+        "operator": "in",
+        "value": "1..15"
+      }
+    ],
+    "Name": "AutoDisconnect"
+  },
+  {
+    "KeyPath": "HKLM:\\SYSTEM\\CurrentControlSet\\Services\\LanManServer\\Parameters",
+    "Tests": [
+      {
+        "operator": "eq",
+        "value": "1"
+      },
+      {
+        "operator": "eq",
+        "value": "$null"
+      }
+    ],
+    "Name": "EnableForcedLogoff"
+  }
+]

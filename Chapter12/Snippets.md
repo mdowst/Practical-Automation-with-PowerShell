@@ -1,357 +1,238 @@
-﻿# Snippet 1 - Install and Import the PnP.Powershell module
+﻿# Snippet 1 - Initial configuration of Git and authenticating
 ```powershell
-Install-Module PnP.Powershell
-Import-Module PnP.Powershell
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+gh auth login –-web
 ```
 
-# Snippet 2 - Connect to SharePoint Online
+# Snippet 2 - Setting default editor to VS Code
 ```powershell
-Connect-PnPOnline -Url "https://<subdomain>.SharePoint.com" -UseWebLogin
+gh config set editor "code -w"
 ```
 
-# Snippet 3 - Create a new SharePoint site
+# Snippet 3 - Create a private Gist and open in the web browser
 ```powershell
-$PnPSite = @{
-	Type       = 'CommunicationSite'
-	Title      = 'Site Management'
-	Url        = "https://<subdomain>.sharepoint.com/sites/SiteManagement"
-	Owner      = "<your-username>@<subdomain>.onmicrosoft.com"
-	SiteDesign = 'Blank'
-}
-New-PnPSite @PnPSite
+gh gist create Get-SystemInfo.ps1 -–web
+```
+```
+- Creating gist Get-SystemInfo.ps1
+✓ Created gist Get-SystemInfo.ps1
+Opening gist.github.com/2d0f590c7dde480fba8ac0201ce6fe0f in your browser.
 ```
 
-# Snippet 4 - Connect to your new site
+# Snippet 4 - List all Gists in your profile
 ```powershell
-Connect-PnPOnline -Url "https://<subdomain>.SharePoint.com/sites/SiteManagement " -UseWebLogin
+gh gist list
+```
+```
+0d0188e13b8c1be453cf1  Autounattend.xml    1 file  secret  about 25 days ago
+116626205476f1df63fe3  AzureVM-Log4j.ps1   1 file  public  about 7 days ago
+a1a9a69c0790d06eb8a53  Get-SystemInfo.ps1  1 file  secret  about 1 month ago
+e0a176f34e2384212a3c1  PoshAutomator.ps1   1 file  secret  about 1 month ago
+a7e6af4038444ff7db54d  Get-OSData.ps1      1 file  secret  about 1 month ago
+ffc62944a5a429375460a  NewDevServer        1 file  secret  about 4 months ago
+3aafcd16557f952e58c6f  Out-GridViewCode    1 file  public  about 3 months ago
 ```
 
-# Snippet 5 - Get the parameters for the New-PnPTenantSite cmdlet
+# Snippet 5 - Open a remote Gist in your local editor
 ```powershell
-$commandData = Get-Command 'New-PnPTenantSite'
-$commandData.ParameterSets |
-Select-Object -Property @{l='ParameterSet';
-    e={$_.Name}} -ExpandProperty Parameters |
-    Where-Object{ $_.Name -notin
-        [System.Management.Automation.Cmdlet]::CommonParameters } |
-Format-Table ParameterSet, Name, ParameterType, IsMandatory
+gh gist edit <Your ID>
 ```
 
-# Snippet 6 - Get the SharePoint templates
+# Snippet 6 - Create a public Gist
 ```powershell
-Get-PnPWebTemplates | Select-Object Name, Title, DisplayCategory
-```
-```
-Name                 Title                                    DisplayCategory
-----                 -----                                    ---------------
-STS#3                Team site (no Microsoft 365 group)       Collaboration
-STS#0                Team site (classic experience)           Collaboration
-BDR#0                Document Center                          Enterprise
-DEV#0                Developer Site                           Collaboration
-OFFILE#1             Records Center                           Enterprise
-EHS#1                Team Site - SharePoint Online            Enterprise
-BICenterSite#0       Business Intelligence Center             Enterprise
-SRCHCEN#0            Enterprise Search Center                 Enterprise
-ENTERWIKI#0          Enterprise Wiki                          Publishing
-PROJECTSITE#0        Project Site                             Collaboration
-PRODUCTCATALOG#0     Product Catalog                          Publishing
-COMMUNITY#0          Community Site                           Collaboration
-COMMUNITYPORTAL#0    Community Portal                         Enterprise
-SITEPAGEPUBLISHING#0 Communication site                       Publishing
-SRCHCENTERLITE#0     Basic Search Center                      Enterprise
-visprus#0            Visio Process Repository                 Enterprise
+gh gist create --public Get-SystemInfo.ps1
 ```
 
-# Snippet 7 - Create a new SharePoint list to store template information
+# Snippet 7 - Import a Gist to your local PowerShell session
 ```powershell
-$templateList = New-PnPList -Title 'Site Templates' -Template GenericList
-Add-PnPField -List $templateList -DisplayName "Name" -InternalName "Name" -Type Text -AddToDefaultView
+Invoke-RestMethod -Uri 'The Gist Raw URL'
+```
+```
+# Listing 1 - Get-SystemInfo.ps1
+Get-CimInstance -Class Win32_OperatingSystem | 
+    Select-Object Caption, InstallDate, ServicePackMajorVersion, 
+    OSArchitecture, BootDevice, BuildNumber, CSName, 
+    @{l='Total_Memory';e={[math]::Round($_.TotalVisibleMemorySize/1MB)}}
 ```
 
-# Snippet 8 - Add the template information to the list
+# Snippet 8 - Import a Gist to your local PowerShell session and execute it
 ```powershell
-$WebTemplates = Get-PnPWebTemplates
-foreach($t in $WebTemplates){
-    $values = @{
-        Title = $t.Title
-        Name = $t.Name
-    }
-    Add-PnpListItem -List $templateList -Values $values
-}
+Invoke-Expression (Invoke-RestMethod -Uri 'The Gist Raw URL')
+```
+```
+Caption                 : Microsoft Windows 11 Enterprise
+InstallDate             : 10/21/2021 5:09:00 PM
+ServicePackMajorVersion : 0
+OSArchitecture          : 64-bit
+BootDevice              : \Device\HarddiskVolume1
+BuildNumber             : 22000
+CSName                  : DESKTOP-6VBP512
+Total_Memory            : 32
 ```
 
-# Snippet 9 - Create a list for new site requests
+# Snippet 9 - Test the PoshAutomator module
 ```powershell
-$list = New-PnPList -Title 'Site Requests' -Template GenericList -OnQuickLaunch
-Set-PnPList -Identity $list -EnableAttachments $false
+Import-Module .\PoshAutomator.psd1
+Get-SystemInfo
+```
+```
+Caption                 : Microsoft Windows 11 Enterprise
+InstallDate             : 10/21/2021 5:09:00 PM
+ServicePackMajorVersion : 0
+OSArchitecture          : 64-bit
+BootDevice              : \Device\HarddiskVolume1
+BuildNumber             : 22000
+CSName                  : DESKTOP-6VBP512
+Total_Memory            : 32
 ```
 
-# Snippet 10 - Rename the Title field
+# Snippet 10 - Initilize the local repository
 ```powershell
-Set-PnPField -List $list -Identity "Title" -Values @{Title="Site name"}
+git init
 ```
-
-# Snippet 11 - Create a URL and Status field that are hidden from the form
+```
+Initialized empty Git repository in C:/PoshAutomatorB/.git/
+```
+# Snippet 11 - Add the files and folder in the current directory to the repository
 ```powershell
-Add-PnPField -List $list -DisplayName "Site URL" -InternalName "SiteURL" -Type URL -AddToDefaultView
-Set-PnPField -List $list -Identity "SiteURL" -Values @{Hidden=$True}
-
-Add-PnPField -List $list -DisplayName "Status" -InternalName "Status" -Type Choice -AddToDefaultView -Choices "Submitted","Creating","Active","Retired",'Problem'
-Set-PnPField -List $list -Identity "Status" -Values @{DefaultValue="Submitted"; Hidden=$True}
+git add .
 ```
 
-# Snippet 12 - Add the template list as a lookup on the Site Request list
+# Snippet 12 - Commit the files and folders
 ```powershell
-$xml = @"
-<Field
-    Type="Lookup"
-    DisplayName="Template"
-    Required="TRUE"
-    EnforceUniqueValues="FALSE"
-    List="{$($templateList.Id)}"
-    ShowField="Title"
-    UnlimitedLengthInDocumentLibrary="FALSE"
-    RelationshipDeleteBehavior="None"
-    ID="{$(New-Guid)}"
-    SourceID="{$($list.Id)}"
-    StaticName="Template"
-    Name="Template"
-    ColName="int1"
-    RowOrdinal="0"
-/>
-"@
-Add-PnPFieldFromXml -List $list -FieldXml $xml
+git commit -m "first commit"
 ```
-
-# Snippet 13 - Create an app registration to use to authentication automations with SharePoint
+```
+[master (root-commit) cf2a211] first commit
+ 4 files changed, 261 insertions(+)
+ create mode 100644 Install-PoshAutomator.ps1
+ create mode 100644 PoshAutomator.psd1
+ create mode 100644 PoshAutomator.psm1
+ create mode 100644 Public/Get-SystemInfo.ps1
+```
+# Snippet 13 - Create the main branch and save your commit to it
 ```powershell
-Register-PnPAzureADApp -ApplicationName 'PnP-SiteRequests' -Tenant '51pxfv.onmicrosoft.com' -Store CurrentUser -Interactive
-```
-```
-WARNING: No permissions specified, using default permissions
-Certificate added to store
-Checking if application 'PnP-SiteRequests' does not exist yet...Success. Application 'PnP-SiteRequests' can be registered.
-App PnP-SiteRequests with id 581af0eb-0d07-4744-a6f7-29ef06a7ea9f created.
-Starting consent flow.
-
-Pfx file               : C:\PnP\PnP-SiteRequests.pfx
-Cer file               : C:\PnP\PnP-SiteRequests.cer
-AzureAppId/ClientId    : 34873c07-f9aa-460d-b17b-ac02c8e8e77f
-Certificate Thumbprint : FBE0D17755F6321E07EFDBFD6A046E4975C0277C
-Base64Encoded          : MIIKRQIBAzCCCgEGCSqGSIb3DQEHAaCCCfIEggnu…
+git branch -M main
 ```
 
-# Snippet 14 - Connect to SharePoint using the app registration
+# Snippet 14 - Create a private repository on GitHub named PoshAutomator
 ```powershell
-$ClientId = '<Your Client GUID>'
-$Thumbprint = '<Your Certificate Thumbprint>'
-$RequestSite = "https://51pxfv.sharepoint.com/sites/SiteManagement"
-$Tenant = '51pxfv.onmicrosoft.com'
-Connect-PnPOnline -ClientId $ClientId -Url $RequestSite -Tenant $Tenant -Thumbprint $Thumbprint
+gh repo create PoshAutomator --private --source=. --remote=upstream
+```
+```
+✓ Created repository mdowst/PoshAutomator on GitHub
+✓ Added remote https://github.com/mdowst/PoshAutomator.git
 ```
 
-# Snippet 15 - Get the items from an entry in the Site Requests list
+# Snippet 15 - Attach the local the local repository to the remote repository
 ```powershell
-$item = Get-PnpListItem -List 'Site Requests' -Id 1
-$item['Title']
-$item['Author']
-$item['Template']
-```
-```
-Posh Tester
-
-Email                       LookupId  LookupValue
------                       --------  -----------
-user@<sub>.onmicrosoft.com  6         Matthew Dowst
-
-LookupId LookupValue        TypeId
--------- -----------        ------
-      15 Communication site {f1d34cc0-9b50-4a78-be78-d5facfcccfb7}
+git remote add origin https://github.com/<yourProfile>/PoshAutomator.git
 ```
 
-# Snippet 16 - Get the internal name of the template selected
+# Snippet 16 - Push the local files to the remote repository in GitHub
 ```powershell
-$templateItem = Get-PnpListItem -List 'Site Templates' -Id $item['Template'].LookupId
-$templateItem['Name']
+git push -u origin main
 ```
 ```
-SITEPAGEPUBLISHING#0
-```
-
-# Snippet 17 - Replace any illegal URL characters
-```powershell
-[regex]::Replace($string, "[^0-9a-zA-Z_\-'\.]", "")
-```
-
-# Snippet 18 - Set autocrlf at the system level
-```powershell
-git config --system core.autocrlf true
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (7/7), 3.56 KiB | 3.56 MiB/s, done.
+Total 7 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/mdowst/PoshAutomator.git
+ * [new branch]      main -> main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
 ```
 
-# Snippet 19 - Set the default branch at the user level
-```powershell
-git config --global init.defaultBranch <name>
-```
-
-# Snippet 20 - Install git with chocolety
-```powershell
-choco uninstall git.install -y
-Remove-Item "$($env:USERPROFILE)\.gitconfig" -force
-Remove-Item "$($env:ProgramFiles)\Git" -Recurse -force
-```
-
-# Snippet 21 - Run the git-install.ps1
-```powershell
-.\git-install.ps1 -branch 'main'
-```
-```
-Chocolatey v0.12.1
-Installing the following packages:
-git.install
-By installing, you accept licenses for the packages.
-Progress: Downloading git.install 2.35.1.2... 100%
-
-chocolatey-core.extension v1.3.5.1 [Approved]
-chocolatey-core.extension package files install completed. Performing other installation steps.
- Installed/updated chocolatey-core extensions.
- The install of chocolatey-core.extension was successful.
-  Software installed to 'C:\ProgramData\chocolatey\extensions\chocolatey-core'
-
-git.install v2.35.1.2 [Approved]
-git.install package files install completed. Performing other installation steps.
-Using Git LFS
-Installing 64-bit git.install...
-git.install has been installed.
-Environment Vars (like PATH) have changed. Close/reopen your shell to
- see the changes (or in powershell/cmd.exe just type `refreshenv`).
- The install of git.install was successful.
-  Software installed to 'C:\Program Files\Git\'
-
-Chocolatey installed 2/2 packages.
- See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
-```
-
-# Snippet 22 - Check the git configuration
-```powershell
-git config --list --show-scope
-```
-```
-diff.astextplain.textconv=astextplain
-system  filter.lfs.clean=git-lfs clean -- %f
-system  filter.lfs.smudge=git-lfs smudge -- %f
-system  filter.lfs.process=git-lfs filter-process
-system  filter.lfs.required=true
-system  http.sslbackend=openssl
-system  http.sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
-system  core.autocrlf=true
-system  core.fscache=true
-system  core.symlinks=false
-system  pull.rebase=false
-system  credential.helper=manager-core
-system  credential.https://dev.azure.com.usehttppath=true
-system  init.defaultbranch=master
-global  init.defaultbranch=main
-```
-
-# Snippet 23 - Invoke-CommandAs as System
-```powershell
-Install-Module -Name Invoke-CommandAs
-Import-Module -Name Invoke-CommandAs
-Invoke-CommandAs -ScriptBlock { . C:\git-install.ps1 } -AsSystem
-```
-```
-Progress: Downloading git.install 2.35.1.2... 100%
-
-git.install v2.35.1.2 [Approved]
-git.install package files install completed. Performing other installation steps.
-Using Git LFS
-Installing 64-bit git.install...
-git.install has been installed.
-WARNING: Can't find git.install install location
-  git.install can be automatically uninstalled.
-Environment Vars (like PATH) have changed. Close/reopen your shell to
- see the changes (or in powershell/cmd.exe just type `refreshenv`).
- The install of git.install was successful.
-  Software installed to 'C:\Program Files\Git\'
-
-Chocolatey installed 1/1 packages.
- See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
-```
-
-# Snippet 24 - Check the git configuration
-```powershell
-git config --list --show-scope
-```
-```
-system  diff.astextplain.textconv=astextplain
-system  filter.lfs.clean=git-lfs clean -- %f
-system  filter.lfs.smudge=git-lfs smudge -- %f
-system  filter.lfs.process=git-lfs filter-process
-system  filter.lfs.required=true
-system  http.sslbackend=openssl
-system  http.sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
-system  core.autocrlf=true
-system  core.fscache=true
-system  core.symlinks=false
-system  pull.rebase=false
-system  credential.helper=manager-core
-system  credential.https://dev.azure.com.usehttppath=true
-system  init.defaultbranch=master
-```
-
-# Snippet 25 - Reload environment variables
+# Snippet 17 - Reload the Path environment variable
 ```powershell
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 ```
 
-# Snippet 26 - Remove git and custom configuration
+# Snippet 18 - Upload the PoshAutomator install script to a GitHub Gist
 ```powershell
-choco uninstall git.install -y
-Remove-Item "$($env:USERPROFILE)\.gitconfig" -force
-Remove-Item "$($env:ProgramFiles)\Git" -Recurse -force
-Invoke-CommandAs -ScriptBlock { . C:\git-install.ps1 } -AsSystem
+gh gist create Install-PoshAutomator.ps1 --web
 ```
 
-# Snippet 27 - Reload environment variables and check the git configuration
+# Snippet 19 - Create a new branch named develop
 ```powershell
-$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
-git config --list --show-scope
+git checkout -b develop
 ```
 ```
-system  diff.astextplain.textconv=astextplain
-system  filter.lfs.clean=git-lfs clean -- %f
-system  filter.lfs.smudge=git-lfs smudge -- %f
-system  filter.lfs.process=git-lfs filter-process
-system  filter.lfs.required=true
-system  http.sslbackend=openssl
-system  http.sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
-system  core.autocrlf=true
-system  core.fscache=true
-system  core.symlinks=false
-system  pull.rebase=false
-system  credential.helper=manager-core
-system  credential.https://dev.azure.com.usehttppath=true
-system  init.defaultbranch=master
+Switched to a new branch 'develop'
 ```
 
-# Snippet 28 - Check the git configuration
+# Snippet 20 -  Pull all files from the main branch on GitHub to your local branch
 ```powershell
-git config --list --show-scope
+git pull origin main
 ```
 ```
-system  diff.astextplain.textconv=astextplain
-system  filter.lfs.clean=git-lfs clean -- %f
-system  filter.lfs.smudge=git-lfs smudge -- %f
-system  filter.lfs.process=git-lfs filter-process
-system  filter.lfs.required=true
-system  http.sslbackend=openssl
-system  http.sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
-system  core.autocrlf=true
-system  core.fscache=true
-system  core.symlinks=false
-system  pull.rebase=false
-system  credential.helper=manager-core
-system  credential.https://dev.azure.com.usehttppath=true
-system  init.defaultbranch=master
-global  init.defaultbranch=main
+From https://github.com/mdowst/PoshAutomatorB
+ * branch            main       -> FETCH_HEAD
+Already up to date.
 ```
+
+# Snippet 21 - Commit your local changes and sync them to GitHub creating a new remote branch
+```powershell
+git add .
+git commit -m "versioned PoshAutomator.psd1"
+```
+```
+[develop 6d3fb8e] versioned PoshAutomator.psd1
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+```
+
+# Snippet 22 - Push your changes to the remote develop branch in GitHub
+```powershell
+git push origin develop
+```
+```
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 322 bytes | 322.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote:
+remote: Create a pull request for 'develop' on GitHub by visiting:
+remote:      https://github.com/mdowst/PoshAutomator/pull/new/develop
+remote:
+To https://github.com/mdowst/PoshAutomator.git
+ * [new branch]      develop -> develop
+```
+
+# Snippet 23 - Commit your local changes and sync them to GitHub updating the remote branch
+```powershell
+git checkout develop
+git add .
+git commit -m "added self-updating to PoshAutomator.psm1"
+git push origin develop
+```
+
+# Snippet 24 - Create a pull request
+```powershell
+gh pr create --title "Develop to Main" --body "This is my first pull request"
+```
+```
+? Where should we push the develop' branch? mdowst/PoshAutomator
+
+Creating pull request for develop into main in mdowst/PoshAutomator
+
+Branch 'develop' set up to track remote branch 'develop' from 'upstream'.
+Everything up-to-date
+https://github.com/mdowst/PoshAutomator/pull/1
+```
+
+# Snippet 25 - Install and test the PoshAutomator module from GitHub
+```powershell
+Invoke-Expression (Invoke-RestMethod -Uri 'Your Gist Raw URL')
+Import-Module PoshAutomator
+Get-SystemInfo
+```
+
+# Snippet 26 - Force the PoshAutomator to reload and pick up any code changes
+```powershell
+Import-Module PoshAutomator -Force
+```
+

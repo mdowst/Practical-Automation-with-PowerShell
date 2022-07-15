@@ -215,7 +215,19 @@ Start-Process @Process
 Get-Content 'ErrorOutput.txt'
 Get-Content 'StdOutput.txt'
 ```
-
+```
+1394ohci     1394 OHCI Compliant Ho Kernel
+3ware        3ware                  Kernel        5/18/2015 5:28:03 PM
+ACPI         Microsoft ACPI Driver  Kernel
+AcpiDev      ACPI Devices driver    Kernel
+acpiex       Microsoft ACPIEx Drive Kernel
+acpipagr     ACPI Processor Aggrega Kernel
+AcpiPmi      ACPI Power Meter Drive Kernel
+acpitime     ACPI Wake Alarm Driver Kernel
+Acx01000     Acx01000               Kernel
+ADP80XX      ADP80XX                Kernel        4/9/2015 3:49:48 PM
+...
+```
 # Snippet 21 - Record external command output and errors
 ```powershell
 $Process = @{
@@ -230,7 +242,10 @@ Start-Process @Process
 Get-Content 'ErrorOutput.txt'
 Get-Content 'StdOutput.txt'
 ```
-
+```
+ERROR: Invalid syntax. /NH option is valid only for "TABLE" and "CSV" format.
+Type "DRIVERQUERY /?" for usage.
+```
 # Snippet 22 - Get Counter data to pass to the Python script
 ```powershell
 $sampleData = Get-Counter -Counter "\Processor(_Total)\% Processor Time" -SampleInterval 2 -MaxSamples 10

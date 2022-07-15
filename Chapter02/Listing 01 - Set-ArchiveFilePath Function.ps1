@@ -1,4 +1,4 @@
-﻿# Listing 2 - Set-ArchiveFilePath Function
+﻿# Listing 1 - Set-ArchiveFilePath Function
 # Declare the function and set required parameters
 Function Set-ArchiveFilePath{
     # Declare CmdletBinding and OutputType
@@ -19,7 +19,7 @@ Function Set-ArchiveFilePath{
     # Check if the folder path exists and create it if it doesn't
     if(-not (Test-Path -Path $ZipPath)){
         New-Item -Path $ZipPath -ItemType Directory | Out-Null
-        # Include verbose output for testing and troubleshoot
+        # Include verbose output for testing and troubleshooting
         Write-Verbose "Created folder '$ZipPath'"
     }
 
