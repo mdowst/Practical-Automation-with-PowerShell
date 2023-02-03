@@ -40,6 +40,7 @@ Part 1: Getting started with automation
    - Summary
 
 Part. 2: Writing scripts
+
 3. Scheduling automation scripts
    -  Scheduled scripts
       -  Know your dependencies and take care of them beforehand
