@@ -24,7 +24,7 @@ A Book about effective scripting from the console to the cloud teaches you how t
 
 # Part 1 : Getting started with automation
 
-  ### Chapter 1. PowerShell automation
+  ### PowerShell automation
       + What you’ll learn in this book
       
       + Practical automation
@@ -36,7 +36,7 @@ A Book about effective scripting from the console to the cloud teaches you how t
       + Actions
       
       + Maintainability
-  ### Chapter 2. The automation process
+  ###  The automation process
      
      - Building blocks
      
@@ -44,7 +44,7 @@ A Book about effective scripting from the console to the cloud teaches you how t
      
      - Combining building blocks and phases
    
-   ### Chapter 3. Choosing the right tool for the job
+   ### Choosing the right tool for the job
      
      - Automation Decision Tree
      
