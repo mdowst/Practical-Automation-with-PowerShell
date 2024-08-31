@@ -51,7 +51,7 @@ A Book about effective scripting from the console to the cloud teaches you how t
      - No need to reinvent the wheel
      
      - Supplemental tools
-   ### Chapter 4. What you need to get started today
+   ### What you need to get started today
      
       - Summary
 
