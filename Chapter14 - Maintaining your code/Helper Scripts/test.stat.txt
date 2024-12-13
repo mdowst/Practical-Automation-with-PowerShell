@@ -1,0 +1,11 @@
+Filesystem     1K-blocks     Used Available Use% Mounted on
+/dev/sda2       50825728 17064828  31149396  36% /
+PS /home/tux> stat /
+  File: /
+  Size: 4096            Blocks: 8          IO Block: 4096   directory
+Device: 802h/2050d      Inode: 2           Links: 20
+Access: (0755/drwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2022-04-02 06:49:20.250126169 -0500
+Modify: 2021-10-01 13:57:20.213260279 -0500
+Change: 2021-10-01 13:57:20.213260279 -0500
+ Birth: 2021-10-01 13:57:20.213260279 -0500

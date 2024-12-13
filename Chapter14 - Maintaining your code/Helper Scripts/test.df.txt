@@ -1,0 +1,2 @@
+Filesystem     1K-blocks     Used Available Use% Mounted on
+/dev/sda2       50825728 17064828  31149396  36% /
